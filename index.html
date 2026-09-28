@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>认知罗盘 · 测一测你的认知水平</title>
-<meta name="description" content="基于认知心理学经典范式的认知水平评估：认知反思、逻辑推理、概率直觉、偏差识别、模式推理、工作记忆。约 12 分钟，测完给雷达图与逐题解析。">
+<title>认知罗盘 · 专业认知能力评估（对标国际标准测验）</title>
+<meta name="description" content="对标 ICAR / 瑞文 APM / 心理旋转 / n-back / CRT 的七维认知评估：流体推理、视觉空间、定量推理、言语推理、逻辑推理、概率理性、工作记忆。约 18 分钟。">
 <style>
 :root{
   --bg:#F5F6FA; --card:#FFFFFF; --ink:#181F30; --ink2:#5A6478; --ink3:#98A1B5;
   --brand:#4656D8; --brand-deep:#3843B8; --brand-soft:#EEF0FC; --brand-line:#D8DCF6;
   --amber:#F59E0B; --amber-soft:#FEF5E4;
   --good:#0FA678; --good-soft:#E7F7F0;
-  --bad:#E4574B; --bad-soft:#FDEEec;
+  --bad:#E4574B; --bad-soft:#FDEEEC;
   --line:#E7EAF2;
   --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",sans-serif;
   --num:"DIN Alternate","Bahnschrift","Segoe UI",var(--sans);
@@ -22,103 +22,91 @@ html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;min-height:100vh}
 #app{max-width:640px;margin:0 auto;padding:0 18px calc(48px + env(safe-area-inset-bottom))}
 button{font-family:var(--sans)}
-
-/* ── 顶栏 ── */
 .topbar{position:sticky;top:0;z-index:50;background:rgba(245,246,250,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:12px}
 .topbar .row{display:flex;justify-content:space-between;align-items:center;padding:2px 2px 10px}
 .brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--ink)}
-.brand .hex{width:22px;height:22px;flex:none}
 .crumb{font-size:12px;color:var(--ink3);text-align:right}
 .crumb b{color:var(--brand);font-weight:600}
 .progress{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
 .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),#7B8AF0);border-radius:4px;transition:width .5s cubic-bezier(.25,.9,.3,1)}
-
-/* ── 卡片 ── */
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);
   padding:32px 28px;margin-top:24px;animation:rise .38s cubic-bezier(.25,.9,.3,1) both}
 @media(max-width:560px){.card{padding:26px 20px;margin-top:16px;border-radius:18px}}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
-/* ── 按钮 ── */
 .btn{display:block;width:100%;border:none;cursor:pointer;background:var(--brand);color:#fff;
-  font-size:16px;font-weight:600;letter-spacing:.18em;text-indent:.18em;padding:15px;border-radius:14px;
-  margin-top:24px;transition:.18s}
+  font-size:16px;font-weight:600;letter-spacing:.18em;text-indent:.18em;padding:15px;border-radius:14px;margin-top:24px;transition:.18s}
 .btn:hover:not(:disabled){background:var(--brand-deep)}
 .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn.sm{font-size:14px;padding:12px;letter-spacing:.1em;text-indent:.1em}
 .btn.ghost{background:#fff;color:var(--ink2);border:1.5px solid var(--line)}
 .btn.ghost:hover{border-color:var(--brand);color:var(--brand);background:#fff}
-
-/* ── 封面 ── */
-.hero{text-align:center;padding-top:26px}
-.logo{width:120px;height:120px;margin:0 auto 6px;display:block;animation:floaty 5s ease-in-out infinite}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.h-kicker{font-size:11px;font-weight:700;letter-spacing:.44em;text-indent:.44em;color:var(--brand);margin:10px 0 6px}
+/* 封面 */
+.hero{text-align:center;padding-top:22px}
+.logo{width:110px;height:110px;margin:0 auto 4px;display:block;animation:floaty 5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.h-kicker{font-size:11px;font-weight:700;letter-spacing:.44em;text-indent:.44em;color:var(--brand);margin:8px 0 6px}
 h1{font-size:clamp(30px,7.6vw,42px);font-weight:800;letter-spacing:.06em}
-.h-sub{color:var(--ink2);font-size:14.5px;margin-top:8px}
-.pillrow{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:22px 0 4px}
-.pill{font-size:12px;color:var(--brand-deep);background:var(--brand-soft);border:1px solid var(--brand-line);
-  border-radius:99px;padding:5px 12px;font-weight:600}
-.h-stats{display:flex;justify-content:center;gap:34px;margin:22px 0 2px}
-.h-stats .v{font-family:var(--num);font-size:26px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.2}
+.h-sub{color:var(--ink2);font-size:14px;margin-top:8px;line-height:1.7}
+.h-bench{margin:18px 0 2px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.benchpill{font-size:11px;color:#755714;background:var(--amber-soft);border:1px solid #F4E3BC;border-radius:99px;padding:4px 11px;font-weight:600}
+.pillrow{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:16px 0 2px}
+.pill{font-size:12px;color:var(--brand-deep);background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:99px;padding:5px 12px;font-weight:600}
+.h-stats{display:flex;justify-content:center;gap:32px;margin:20px 0 0}
+.h-stats .v{font-family:var(--num);font-size:25px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
 .h-stats .k{font-size:11px;color:var(--ink3);margin-top:1px}
-.h-note{background:var(--amber-soft);border:1px solid #F4E3BC;border-radius:14px;padding:13px 16px;
-  font-size:13px;color:#8A6A1F;text-align:left;line-height:1.8;margin-top:20px}
+.h-note{background:var(--amber-soft);border:1px solid #F4E3BC;border-radius:14px;padding:13px 16px;font-size:13px;color:#8A6A1F;text-align:left;line-height:1.8;margin-top:20px}
 .h-note b{color:#755714}
 .linkline{text-align:center;font-size:12.5px;color:var(--ink3);margin-top:16px}
 .linkline a{color:var(--ink2);cursor:pointer;text-decoration:underline}
-
-/* ── 自评 ── */
-.stagehead{margin-bottom:4px}
+/* 通用文案块 */
 .s-kick{font-size:11px;font-weight:700;letter-spacing:.3em;color:var(--brand)}
-.s-title{font-size:26px;font-weight:800;margin:6px 0 10px;letter-spacing:.02em}
+.s-title{font-size:26px;font-weight:800;margin:6px 0 10px}
 .s-body{color:var(--ink2);font-size:14.5px;text-align:justify}
-.bigpct{font-family:var(--num);font-size:66px;font-weight:800;color:var(--brand);text-align:center;line-height:1.1;margin-top:26px;font-variant-numeric:tabular-nums}
-.bigpct small{font-size:24px;color:var(--ink3);font-weight:600}
+.s-body b{color:var(--ink)}
+.bigpct{font-family:var(--num);font-size:64px;font-weight:800;color:var(--brand);text-align:center;line-height:1.1;margin-top:26px;font-variant-numeric:tabular-nums}
+.bigpct small{font-size:23px;color:var(--ink3);font-weight:600}
 input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:3px;outline:none;margin:20px 0 4px;
   background:linear-gradient(90deg,var(--brand) var(--fill,72%),var(--line) var(--fill,72%))}
-input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;
-  background:#fff;border:3.5px solid var(--brand);box-shadow:0 2px 10px rgba(70,86,216,.3);cursor:pointer}
+input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:3.5px solid var(--brand);box-shadow:0 2px 10px rgba(70,86,216,.3);cursor:pointer}
 .marks{display:flex;justify-content:space-between;font-size:11px;color:var(--ink3)}
-
-/* ── 节过渡 ── */
-.sec-ico{width:56px;height:56px;border-radius:16px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:16px}
-.sec-part{font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--brand)}
-.sec-name{font-size:27px;font-weight:800;margin:6px 0 10px}
-.sec-desc{color:var(--ink2);font-size:14.5px;text-align:justify}
+/* 节过渡 */
+.sec-ico{width:54px;height:54px;border-radius:16px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:14px}
+.sec-part{font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--brand)}
+.sec-name{font-size:26px;font-weight:800;margin:6px 0 4px}
+.sec-en{font-size:11.5px;color:var(--ink3);letter-spacing:.08em;margin-bottom:10px}
+.sec-desc{color:var(--ink2);font-size:14px;text-align:justify}
 .sec-desc b{color:var(--ink)}
-.sec-meta{margin-top:18px;font-size:12.5px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:13px}
-
-/* ── 题目 ── */
-.q-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sec-meta{margin-top:16px;font-size:12.5px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:12px;line-height:1.8}
+/* 题目 */
+.q-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .q-no{font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.1em;font-variant-numeric:tabular-nums}
 .q-tag{font-size:11px;color:var(--ink3);background:var(--bg);border:1px solid var(--line);padding:3px 10px;border-radius:99px}
-.q-text{font-size:17px;font-weight:600;line-height:1.85;margin-bottom:20px}
+.q-text{font-size:16.5px;font-weight:600;line-height:1.85;margin-bottom:18px}
 .q-text .hl{color:var(--brand-deep)}
-.numline{font-family:var(--num);font-size:23px;letter-spacing:.14em;color:var(--brand-deep);background:var(--brand-soft);
-  display:inline-block;padding:8px 18px;border-radius:12px;margin-top:10px;font-weight:700;font-variant-numeric:tabular-nums}
-.numtab{display:inline-grid;grid-template-columns:auto auto auto auto;gap:7px 16px;margin-top:12px;font-family:var(--num);font-size:18px;color:var(--brand-deep);font-variant-numeric:tabular-nums}
-.numtab i{font-style:normal;color:var(--ink3);font-size:11.5px;align-self:center;font-family:var(--sans)}
-.numtab span{background:var(--brand-soft);padding:3px 12px;border-radius:9px;text-align:center;min-width:50px;font-weight:700}
-.numtab .qm{background:var(--amber-soft);color:#B07A0A}
+.stars{color:var(--amber);font-size:12px;letter-spacing:2px;margin-bottom:14px}
+.stars i{font-style:normal;color:#E3D9BE}
+.numline{font-family:var(--num);font-size:22px;letter-spacing:.12em;color:var(--brand-deep);background:var(--brand-soft);
+  display:inline-block;padding:8px 18px;border-radius:12px;margin-top:8px;font-weight:700;font-variant-numeric:tabular-nums}
 .opts{display:grid;gap:10px}
 .opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:#FBFCFE;
-  border:1.8px solid var(--line);border-radius:13px;padding:13px 16px;font-size:15px;color:var(--ink);cursor:pointer;transition:.15s;line-height:1.55}
+  border:1.8px solid var(--line);border-radius:13px;padding:12px 16px;font-size:15px;color:var(--ink);cursor:pointer;transition:.15s;line-height:1.55}
 .opt:hover{border-color:#C6CDE4}
 .opt .abc{flex:none;width:25px;height:25px;border-radius:8px;border:1.5px solid #C9CFE2;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink3);transition:.15s}
 .opt.sel{border-color:var(--brand);background:var(--brand-soft)}
 .opt.sel .abc{background:var(--brand);border-color:var(--brand);color:#fff}
 .opt .tick{margin-left:auto;color:var(--brand);font-weight:800;flex:none}
-/* 图形题 */
+.opt .ctr{margin:0 auto}
+/* 图形题容器 */
 .figgrid{display:grid;grid-template-columns:repeat(3,76px);grid-template-rows:repeat(3,76px);gap:8px;justify-content:center;
-  margin:6px 0 20px;background:var(--bg);padding:14px;border-radius:16px;border:1px solid var(--line)}
-.figgrid .cell{background:#fff;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center}
+  margin:6px 0 18px;background:var(--bg);padding:14px;border-radius:16px;border:1px solid var(--line)}
+.figgrid .cell{background:#fff;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .figgrid .cell.qm{border-style:dashed;border-color:var(--amber);color:#B07A0A;font-size:24px;font-weight:800}
 .figopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.figopts .opt{justify-content:center;padding:9px}
-
-/* ── 置信度 ── */
-.conf-zone{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
+.figopts .opt{justify-content:center;padding:8px}
+/* 3D 题 */
+.iso3d{display:flex;justify-content:center;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 8px;margin:4px 0 16px}
+.iso3d svg{max-width:100%}
+/* 置信度 */
+.conf-zone{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
 .conf-label{font-size:13px;color:var(--ink2);margin-bottom:10px}
 .conf-label b{color:var(--ink)}
 .confs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -129,50 +117,64 @@ input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;
 .conf.sel{border-color:var(--amber);background:var(--amber-soft)}
 .conf.sel .c1{color:#9A6E08}.conf.sel .c2{color:#B07A0A}
 .next-hint{font-size:12px;color:var(--ink3);text-align:center;margin-top:12px}
-
-/* ── 工作记忆 ── */
-.wm-stage{text-align:center;padding:14px 0 4px}
+/* n-back */
+.nb-stage{text-align:center;padding:8px 0}
+.nb-digits{font-family:var(--num);font-size:88px;font-weight:800;color:var(--brand-deep);min-height:1.1em;display:flex;align-items:center;justify-content:center;margin:10px 0}
+.nb-fix{color:var(--ink3);font-size:40px}
+.nb-btn{display:block;width:100%;border:1.8px dashed var(--brand);background:var(--brand-soft);color:var(--brand-deep);
+  font-size:16px;font-weight:700;padding:16px;border-radius:14px;cursor:pointer;transition:.12s}
+.nb-btn:active,.nb-btn.hit{background:var(--brand);color:#fff;border-style:solid}
+.nb-btn:disabled{opacity:.3;cursor:default}
+.nb-tip{font-size:13px;color:var(--ink2);line-height:1.8}
+.nb-tip b{color:var(--bad)}
+.nb-prog{display:flex;gap:4px;justify-content:center;margin:8px 0 6px;flex-wrap:wrap}
+.nb-prog i{width:11px;height:11px;border-radius:3px;background:var(--line)}
+.nb-prog i.done{background:#C6CDE4}
+.nb-prog i.ok{background:var(--good)}
+.nb-prog i.fa{background:var(--bad)}
+.nb-prog i.miss{background:var(--amber)}
+/* 工作记忆倒叙 */
+.wm-stage{text-align:center;padding:10px 0 4px}
 .wm-lv{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
 .wm-lv i{width:26px;height:5px;border-radius:3px;background:var(--line)}
 .wm-lv i.done{background:var(--good)}.wm-lv i.now{background:var(--amber)}
 .wm-tip{color:var(--ink2);font-size:14px}
 .wm-tip b{color:var(--bad)}
-.wm-digits{font-family:var(--num);font-size:clamp(46px,11vw,62px);font-weight:800;letter-spacing:.3em;text-indent:.3em;
-  color:var(--brand-deep);margin:28px 0 24px;min-height:1.25em;animation:pop .35s cubic-bezier(.2,1.5,.4,1) both;font-variant-numeric:tabular-nums}
+.wm-digits{font-family:var(--num);font-size:clamp(44px,11vw,60px);font-weight:800;letter-spacing:.3em;text-indent:.3em;
+  color:var(--brand-deep);margin:26px 0 22px;min-height:1.25em;animation:pop .35s cubic-bezier(.2,1.5,.4,1) both;font-variant-numeric:tabular-nums}
 @keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
 .wm-timer{height:4px;background:var(--line);border-radius:3px;max-width:260px;margin:0 auto;overflow:hidden}
 .wm-timer i{display:block;height:100%;background:var(--amber);width:100%;transform-origin:left}
-.wm-input{font-family:var(--num);font-size:29px;text-align:center;letter-spacing:.28em;width:100%;
-  border:2px solid var(--line);border-radius:13px;padding:13px;outline:none;margin-top:24px;color:var(--brand-deep);background:#FBFCFE}
+.wm-input{font-family:var(--num);font-size:28px;text-align:center;letter-spacing:.28em;width:100%;
+  border:2px solid var(--line);border-radius:13px;padding:13px;outline:none;margin-top:22px;color:var(--brand-deep);background:#FBFCFE}
 .wm-input:focus{border-color:var(--brand)}
-.wm-fb{margin-top:16px;font-size:14.5px;min-height:26px;font-weight:600}
+.wm-fb{margin-top:14px;font-size:14.5px;min-height:26px;font-weight:600}
 .wm-fb.ok{color:var(--good)}.wm-fb.no{color:var(--bad)}
-
-/* ── 结果 ── */
-.res-hero{text-align:center;padding-top:12px}
+/* 结果 */
+.res-hero{text-align:center;padding-top:10px}
 .r-kick{font-size:11px;font-weight:700;letter-spacing:.4em;text-indent:.4em;color:var(--brand)}
-.r-big{font-family:var(--num);font-size:clamp(76px,19vw,112px);font-weight:800;color:var(--ink);line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.r-big{font-family:var(--num);font-size:clamp(74px,19vw,110px);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
 .r-cap{color:var(--ink3);font-size:12px;letter-spacing:.3em;text-indent:.3em}
-.level-pill{display:inline-block;margin-top:16px;padding:9px 26px;border-radius:99px;background:var(--brand);color:#fff;font-size:18px;font-weight:700;box-shadow:0 8px 22px rgba(70,86,216,.32)}
-.pct-line{margin-top:16px;color:var(--ink2);font-size:14px}
+.level-pill{display:inline-block;margin-top:15px;padding:9px 26px;border-radius:99px;background:var(--brand);color:#fff;font-size:18px;font-weight:700;box-shadow:0 8px 22px rgba(70,86,216,.32)}
+.pct-line{margin-top:15px;color:var(--ink2);font-size:14px}
 .pct-line b{color:var(--ink);font-size:16px}
-.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
-.mini{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
-.mini .v{font-family:var(--num);font-size:25px;font-weight:800;font-variant-numeric:tabular-nums}
+.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.mini{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center}
+.mini .v{font-family:var(--num);font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
 .mini .k{font-size:11.5px;color:var(--ink3);margin-top:2px}
-.portrait{margin-top:22px;padding:17px 20px;background:linear-gradient(135deg,#F6F7FD,#EEF3FB);border:1px solid var(--brand-line);border-radius:14px;font-size:14px;color:#3B4460;text-align:justify;line-height:1.85}
+.portrait{margin-top:20px;padding:16px 19px;background:linear-gradient(135deg,#F6F7FD,#EEF3FB);border:1px solid var(--brand-line);border-radius:14px;font-size:14px;color:#3B4460;text-align:justify;line-height:1.85}
 .portrait b{color:var(--brand-deep)}
-.blk-title{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.blk-title{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .blk-title::after{content:"";flex:1;height:1px;background:var(--line)}
 .blk-title .n{font-family:var(--num);color:var(--brand);font-size:14px;font-weight:800}
 .radar-wrap{display:flex;justify-content:center}
-.dimrows{display:grid;gap:15px;margin-top:6px}
+.dimrows{display:grid;gap:14px;margin-top:4px}
 .dimrow .head{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}
 .dimrow .head b{font-weight:700}
 .dimrow .head span{color:var(--ink2);font-variant-numeric:tabular-nums}
 .bar{height:8px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#7B8AF0,var(--brand));width:0;transition:width 1s cubic-bezier(.25,.9,.3,1)}
-.dimrow .note{font-size:12px;color:var(--ink3);margin-top:5px}
+.dimrow .note{font-size:12px;color:var(--ink3);margin-top:4px}
 .cal-row{display:flex;gap:20px;align-items:center}
 .cal-num{font-family:var(--num);font-size:46px;font-weight:800;color:var(--brand);line-height:1;font-variant-numeric:tabular-nums}
 .cal-num small{font-size:13px;color:var(--ink3);font-weight:600;display:block;margin-top:4px;font-family:var(--sans)}
@@ -180,7 +182,7 @@ input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;
 .msg.good{background:var(--good-soft);color:#116B4F;border:1px solid #C7E9DA}
 .msg.warn{background:var(--bad-soft);color:#96382F;border:1px solid #F2D4CF}
 .msg.info{background:var(--brand-soft);color:#3A4699;border:1px solid var(--brand-line)}
-.dkt{display:flex;align-items:center;gap:0;margin:20px 0 8px}
+.dkt{display:flex;align-items:center;gap:0;margin:18px 0 6px}
 .dkt .pole{width:70px;text-align:center;font-size:11.5px;color:var(--ink3)}
 .dkt .track{flex:1;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--brand-soft),var(--line));position:relative}
 .dkt .pin{position:absolute;top:50%;left:0;width:21px;height:21px;border-radius:50%;transform:translate(-50%,-50%);
@@ -203,18 +205,25 @@ details.qa .body .yours{margin:10px 0;padding:9px 13px;border-radius:9px;font-si
 details.qa .body .yours.ok{background:var(--good-soft);color:#116B4F}
 details.qa .body .yours.no{background:var(--bad-soft);color:#96382F}
 details.qa .body .exp b{color:var(--ink)}
-.waters{display:grid;gap:0}
-.water{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:15px 2px;border-bottom:1px solid var(--line)}
-.water:last-child{border-bottom:none}
-@media(max-width:560px){.water{grid-template-columns:1fr;gap:7px}}
+details.qa .body .figrev{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+details.qa .body .figrev svg{background:#fff;border:1px solid var(--line);border-radius:10px;padding:4px}
+.waters .water{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:14px 2px;border-bottom:1px solid var(--line)}
+.waters .water:last-child{border-bottom:none}
+@media(max-width:560px){.waters .water{grid-template-columns:1fr;gap:7px}}
 .water .wname{font-weight:800;font-size:14.5px;color:var(--brand-deep)}
 .water .vs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .water .vs div{font-size:12.3px;line-height:1.7;padding:9px 12px;border-radius:10px}
 .water .vs .lo{background:var(--bg);color:var(--ink2);border:1px solid var(--line)}
 .water .vs .hi{background:var(--brand-soft);color:#3A4699;border:1px solid var(--brand-line)}
 .water .vs b{display:block;font-size:10.5px;letter-spacing:.14em;margin-bottom:2px;opacity:.65}
-.disclaimer{font-size:12px;color:var(--ink3);line-height:1.85;text-align:justify;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
-footer{margin-top:44px;text-align:center;color:var(--ink3);font-size:11.5px;line-height:2}
+.benchlist{display:grid;gap:0;margin-top:4px}
+.benchlist .bi{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:12.8px;line-height:1.7}
+.benchlist .bi:last-child{border-bottom:none}
+@media(max-width:560px){.benchlist .bi{grid-template-columns:1fr;gap:2px}}
+.benchlist b{color:var(--ink)}
+.benchlist span{color:var(--ink2)}
+.disclaimer{font-size:12px;color:var(--ink3);line-height:1.85;text-align:justify;margin-top:20px;padding-top:15px;border-top:1px solid var(--line)}
+footer{margin-top:42px;text-align:center;color:var(--ink3);font-size:11.5px;line-height:2}
 .selftest{font-family:Consolas,monospace;font-size:11px;color:#8b93a7;white-space:pre-wrap;padding:12px;margin-top:26px;background:#F0F1F6;border-radius:10px}
 </style>
 </head>
@@ -222,7 +231,7 @@ footer{margin-top:44px;text-align:center;color:var(--ink3);font-size:11.5px;line
 <div id="app">
   <div class="topbar">
     <div class="row">
-      <span class="brand"><svg class="hex" viewBox="0 0 40 40"><polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" fill="none" stroke="#4656D8" stroke-width="3"/><polygon points="20,13 26,23 14,23" fill="#F59E0B"/></svg>认知罗盘</span>
+      <span class="brand"><svg width="22" height="22" viewBox="0 0 40 40"><polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5" fill="none" stroke="#4656D8" stroke-width="3"/><polygon points="20,13 26,23 14,23" fill="#F59E0B"/></svg>认知罗盘</span>
       <span class="crumb" id="crumb"></span>
     </div>
     <div class="progress"><i id="progBar" style="width:0%"></i></div>
@@ -233,142 +242,313 @@ footer{margin-top:44px;text-align:center;color:var(--ink3);font-size:11.5px;line
 <script>
 "use strict";
 /* =====================================================================
-   认知罗盘 v2 · 认知水平评估
-   范式：CRT(Frederick 2005) / Wason(1966) / Kahneman-Tversky / Raven / 倒叙广度
+   认知罗盘 v3 · 专业认知能力评估
+   骨架：CHC 认知能力模型（WAIS 等临床量表的底层分类框架）
+   题型对标：ICAR(矩阵/3D旋转/数列/言语) · Raven APM · Vandenberg-Kuse
+            心理旋转 · n-back(Cambridge Brain Sciences) · CRT/CART
    ===================================================================== */
-const VERSION=2;
+const VERSION=3;
 const CONF_VALS=[0.55,0.75,0.95];
 const CONF_NAMES=[["纯靠直觉","55%"],["比较有把握","75%"],["非常确定","95%"]];
 
 const SECTIONS=[
- {key:"reflect",name:"认知反思",icon:"◍",one:"能否按住第一反应，动笔验一验",
-  desc:"这一节的每道题都有一个「听起来立刻就对」的答案——它通常是错的。心理学家弗雷德里克发现：答不答得对这类题，预测的不是聪不聪明，而是<b>愿不愿意动用聪明</b>。请刻意放慢半拍。",
-  meta:"5 题 · 每题都埋了一个直觉陷阱"},
- {key:"logic",name:"逻辑推理",icon:"◈",one:"只按给定规则推导，不被画面感带走",
-  desc:"只依据题目<b>给定</b>的规则作严格推导，不被常识和画面感带偏。三段论、条件推理和选择任务是「讲道理」的底层硬件——测你能否守住「必然成立」这条线。",
-  meta:"4 题 · 抛开常识，只认规则"},
- {key:"prob",name:"概率直觉",icon:"◎",one:"用基础率和样本量思考不确定",
-  desc:"人脑天生用「故事」代替「数学」。基础率忽视、赌徒谬误、合取谬误不是笨人的专利，而是全人类的默认设置——差别只在于有人装了纠错程序。这一节是普通人失分最集中的地方。",
-  meta:"5 题 · 按数学作答，别按感觉"},
- {key:"bias",name:"偏差识别",icon:"◐",one:"在真实情境里当场认出思维陷阱",
-  desc:"幸存者偏差、沉没成本、框架效应——知道名词不算数，能在<b>具体情境</b>里当场认出才算。题目都伪装成日常决策：看病、买票、看新闻。",
-  meta:"4 题 + 1 题读题检查"},
- {key:"pattern",name:"模式推理",icon:"◇",one:"在数字与图形里发现抽象规则",
-  desc:"在序列与图形中找规律，是<b>流体智力</b>的核心（瑞文推理测验近百年来的主力题型）。它与知识储备的关系最小。规律藏在差值里，也在差值的差值里。",
-  meta:"4 题 · 差值、倍数、旋转"},
- {key:"wm",name:"工作记忆",icon:"▣",one:"脑中「草稿纸」的容量",
-  desc:"工作记忆是脑中的草稿纸：同时摆弄几个要素而不丢失。心算、理解长句、多步规划全在它上面进行。屏幕会闪现一串数字，消失后请<b>按从右到左的顺序</b>输入，共 3 轮、长度递增。请勿纸笔。",
-  meta:"3 试 · 请勿用纸笔"}
+ {key:"gf",name:"流体推理",en:"Fluid Reasoning · Matrix",icon:"◧",one:"在抽象图形中发现多规则叠加",
+  desc:"瑞文高级推理测验（APM）的同型题型：九宫格里每行、每列各藏一条规则，常常<b>多条规则同时叠加</b>（数量、形状、位置、旋转、叠加消除）。流体推理被广泛认为最接近「智力本身的测量」——它与知识、语言、文化背景的关系最小。",
+  meta:"6 题 · 难度递增，最后一题是全球高分组也易失守的叠加规则"},
+ {key:"gv",name:"视觉空间",en:"Visual-Spatial · 3D Rotation",icon:"◲",one:"在脑中旋转三维物体",
+  desc:"心理旋转测验（Shepard & Metzler 构型，Vandenberg & Kuse 量表）——空间能力的经典黄金范式。选出与目标<b>旋转后完全相同</b>的图形：小心，镜像干扰项「看起来一模一样」却永远转不回去。空间能力是工程、建筑、外科、飞行领域的核心预测因子。",
+  meta:"4 题 · 注意区分「旋转」与「镜像」"},
+ {key:"gq",name:"定量推理",en:"Quantitative · Number Series",icon:"∑",one:"在数字序列中发现嵌套规律",
+  desc:"ICAR 数字系列题型。规律可能藏在差值里、差值的差值里、交错位置里，甚至藏在「数字怎么读」里。先看一阶差，再看二阶差，再拆奇偶位——这是标准解法。",
+  meta:"4 题 · 从二阶等差到「外观数列」"},
+ {key:"gc",name:"言语推理",en:"Verbal Reasoning",icon:"言",one:"对语义关系与论证形式的敏感",
+  desc:"言语类比与论证结构分析（GRE / MAT / ICAR 言语分测验同型）。它测的不是词汇量，而是<b>关系的识别与迁移</b>：两个词之间是什么关系？哪个选项保持着完全相同的结构？",
+  meta:"3 题 · 类比 · 语义精析 · 平行论证"},
+ {key:"logic",name:"逻辑推理",en:"Deductive Reasoning",icon:"⊨",one:"只按给定规则严格推导",
+  desc:"条件推理、假言连锁与三段论。含一道<b>抽象版选择任务</b>——Wason（1966）的原始形态，全球实验室测得的通过率不足 10%：能越过它的人，是在真正地按规则推理，而不是按感觉。",
+  meta:"3 题 + 1 题读题检查"},
+ {key:"rat",name:"概率与理性",en:"Rationality · CRT & Bayesian",icon:"◎",one:"不被直觉劫持的判断力",
+  desc:"这一节最难也最有现实价值：认知反思测验（CRT）、贝叶斯推理、期望值、辛普森悖论——卡尼曼与特沃斯基半个世纪的实验证明：这些题错的不是笨人，是<b>所有人</b>。差别只在于有人装了纠错程序。理性思维（Stanovich 称之为「理性商数」）与智商相关，却彼此独立。",
+  meta:"6 题 · 全部来自发表过论文的经典实验"},
+ {key:"wm",name:"工作记忆",en:"Working Memory · n-back & Span",icon:"▣",one:"脑中「草稿纸」的容量与监控",
+  desc:"两项国际标准任务：① <b>2-back 任务</b>（Cambridge Brain Sciences 等平台的工作记忆范式）：数字逐个出现，判断当前数字是否与<b>前 2 个</b>相同——它同时考验容量与实时监控；② <b>数字倒叙广度</b>：记住后从右到左输入。请勿纸笔。",
+  meta:"2 项任务 · 先 2-back（约 40 秒），后倒叙 2 轮"}
 ];
 
+/* ============ 图形绘制引擎 ============ */
+function shapeSVG(shape,fill,rot,s){ /* 单个形状，中心 (s/2,s/2) */
+  const c=s/2,r=s*0.34;let p="";
+  if(shape==="circle")p=`<circle cx="${c}" cy="${c}" r="${r}" ${fill}/>`;
+  else if(shape==="square")p=`<rect x="${c-r}" y="${c-r}" width="${2*r}" height="${2*r}" ${fill} transform="rotate(${rot} ${c} ${c})"/>`;
+  else if(shape==="triangle")p=`<polygon points="${c},${c-r} ${c+r*0.87},${c+r*0.5} ${c-r*0.87},${c+r*0.5}" ${fill} transform="rotate(${rot} ${c} ${c})"/>`;
+  else if(shape==="diamond")p=`<polygon points="${c},${c-r} ${c+r},${c} ${c},${c+r} ${c-r},${c}" ${fill} transform="rotate(${rot} ${c} ${c})"/>`;
+  return p;
+}
+const FILLS={solid:'fill="#4656D8"',empty:'fill="#fff" stroke="#4656D8" stroke-width="2"',hatch:'fill="url(#hx)" stroke="#4656D8" stroke-width="1.5"'};
+function svgWrap(inner,size){return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${inner}</svg>`;}
+function defsHatch(){return `<defs><pattern id="hx" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#4656D8" stroke-width="1.6"/></pattern></defs>`;}
+
+/* M1 数量×形状：行=数量 1..3，列=形状 圆/方/三角，全部实心 */
+function m1cell(r,c){const shape=["circle","square","triangle"][c];const n=r+1;const s=60,w=17;
+  const gap=(s-n*w)/(n+1);let h="";
+  for(let i=0;i<n;i++)h+=`<g transform="translate(${(gap+i*(w+gap)).toFixed(1)},${((s-w)/2).toFixed(1)})">${shapeSVG(shape,FILLS.solid,0,w)}</g>`;
+  return svgWrap(defsHatch()+h,s);}
+/* M2 点位移动：3x3 小格中黑点，行 r 列 c → 子位 (r, (c+r)%3) */
+function m2cell(r,c){const s=60,u=s/3;const col=(c+r)%3;
+  let h=`<rect x="2" y="2" width="${s-4}" height="${s-4}" fill="none" stroke="#E3E6F0" stroke-width="1"/>`;
+  for(let i=1;i<3;i++){h+=`<line x1="${i*u}" y1="2" x2="${i*u}" y2="${s-2}" stroke="#EEF0F6"/><line x1="2" y1="${i*u}" x2="${s-2}" y2="${i*u}" stroke="#EEF0F6"/>`;}
+  h+=`<circle cx="${col*u+u/2}" cy="${r*u+u/2}" r="${u*0.26}" fill="#4656D8"/>`;
+  return svgWrap(h,s);}
+/* M3 拉丁方：形状×填充，每行每列各一次 */
+const M3MAP=[["circle","solid"],["square","empty"],["diamond","hatch"],["square","hatch"],["diamond","solid"],["circle","empty"],["diamond","empty"],["circle","hatch"],null];
+function m3cell(i){if(i==null)return null;const[sh,fl]=M3MAP[i];return svgWrap(defsHatch()+shapeSVG(sh,FILLS[fl],0,60),60);}
+/* M4 笔画累加：每行从左到右加一笔 */
+const M4STROKES=[ /* 每行 3 格的线段集合（累加） */
+ [["M8 44 L52 44"],["M8 44 L52 44","M8 12 L8 44"],["M8 44 L52 44","M8 12 L8 44","M8 12 L52 44"]],
+ [["M30 8 L30 52"],["M30 8 L30 52","M8 30 L52 30"],["M30 8 L30 52","M8 30 L52 30","M8 8 L52 52"]],
+ [["M8 30 L52 30","M30 8 L30 52"],["M8 30 L52 30","M30 8 L30 52","M8 8 L30 30"],["M8 30 L52 30","M30 8 L30 52","M8 8 L30 30","M8 30 L52 52"]]];
+function m4cell(r,c){const strokes=M4STROKES[r][c];if(!strokes)return null;
+  return svgWrap(strokes.map(d=>`<path d="${d}" fill="none" stroke="#4656D8" stroke-width="3.4" stroke-linecap="round"/>`).join(""),60);}
+/* M5 数量算术：第三列 = 第一列 − 第二列（竖线数量）*/
+function m5cell(n){if(n==null)return null;const s=60;
+  if(n<=0)return svgWrap(`<text x="30" y="38" font-size="30" text-anchor="middle" fill="#98A1B5">∅</text>`,s);
+  let h="";for(let i=0;i<n;i++){const x=n===1?30:10+i*(40/Math.max(n-1,1));
+    h+=`<line x1="${x.toFixed(1)}" y1="12" x2="${x.toFixed(1)}" y2="48" stroke="#4656D8" stroke-width="3.2" stroke-linecap="round"/>`;}
+  return svgWrap(h,s);}
+/* M6 XOR 叠加数据：每行 [列1集合, 列2集合] */
+const M6ROWS=[
+  [[["circle"],["square"]],[["square"],["triangle"]]],
+  [[["diamond"],["circle"]],[["circle"],["triangle"]]],
+  [[["circle"],["triangle"]],[["triangle"],["diamond"]]]
+];
+function m6xor(r){const A=M6ROWS[r][0],B=M6ROWS[r][1];
+  return[...A.filter(s=>!B.some(t=>t[0]===s[0])),...B.filter(s=>!A.some(t=>t[0]===s[0]))];}
+function m6set(shapes){const s=60,n=shapes.length;const w=17;const step=w+7;const start=(s-n*w-(n-1)*7)/2;
+  let h=defsHatch();shapes.forEach((sh,i)=>{h+=`<g transform="translate(${(start+i*step).toFixed(1)},${(s-w)/2})">${shapeSVG(sh[0],FILLS[sh[1]||"solid"],0,w)}</g>`;});
+  return svgWrap(h,s);}
+function m6cell(r,c){return m6set(c===2?m6xor(r):M6ROWS[r][c]);}
+
+/* ============ 3D 等轴渲染引擎 ============ */
+const CUBE={w:16,h:8,v:18}; /* 半宽、半高、立面高 */
+function rotY(p){return [p[2],p[1],-p[0]];}   /* 绕 Y 轴 90° */
+function rotX(p){return [p[0],-p[2],p[1]];}   /* 绕 X 轴 90° */
+function mirror(p){return [-p[0],p[1],p[2]];}
+function applyAll(cells,f){return cells.map(f);}
+function normalize(cells){ /* 平移到 min=0，规范化排序 */
+  const mn=[0,1,2].map(i=>Math.min(...cells.map(c=>c[i])));
+  return cells.map(c=>[c[0]-mn[0],c[1]-mn[1],c[2]-mn[2]]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||a[2]-b[2]);}
+function sameShape(a,b){const B=normalize(b);return ROT_OPS.some(op=>{
+  const A=normalize(a.map(op));
+  return A.every((c,i)=>c[0]===B[i][0]&&c[1]===B[i][1]&&c[2]===B[i][2]);});}
+const ROT_OPS=(()=>{ /* 枚举 24 个三维旋转 */
+  const I=p=>[...p];
+  const ops=[],seen=new Set(),q=[I];
+  const key=f=>{const t=f([1,2,3]);return t.join(",");};
+  while(q.length){
+    const m=q.shift();ops.push(m);
+    for(const r of[rotX,rotY,(p)=>rotY(rotY(p))]){ /* 生成元 */
+      const nm=p=>r(m(p));const k=key(nm);
+      if(!seen.has(k)){seen.add(k);q.push(nm);}
+    }
+  }
+  return ops;
+})();
+function isoSVG(cells,size){
+  const cs=normalize(cells);
+  const w=CUBE.w,h=CUBE.h,v=CUBE.v;
+  const P=(x,y,z)=>[(x-z)*w,(x+z)*h-y*v];
+  const pt=(px,py,pz)=>P(px,py,pz).map(n=>n.toFixed(1)).join(",");
+  const order=[...cs].sort((a,b)=>(a[0]+a[1]+a[2])-(b[0]+b[1]+b[2]));
+  let faces="";
+  for(const[x,y,z]of order){
+    /* 可见三面：y+1 顶面、x+1 右面、z+1 左面 */
+    const top=`${pt(x,y+1,z)} ${pt(x+1,y+1,z)} ${pt(x+1,y+1,z+1)} ${pt(x,y+1,z+1)}`;
+    const right=`${pt(x+1,y,z)} ${pt(x+1,y+1,z)} ${pt(x+1,y+1,z+1)} ${pt(x+1,y,z+1)}`;
+    const left=`${pt(x,y,z+1)} ${pt(x+1,y,z+1)} ${pt(x+1,y+1,z+1)} ${pt(x,y+1,z+1)}`;
+    faces+=`<polygon points="${top}" fill="#7B8AF0"/><polygon points="${right}" fill="#4656D8"/><polygon points="${left}" fill="#3843B8"/>
+    <polygon points="${top}" fill="none" stroke="#fff" stroke-width="1.2" opacity=".55"/>`;
+  }
+  const all=[];
+  for(const[x,y,z]of cs)for(const dx of[0,1])for(const dy of[0,1])for(const dz of[0,1])all.push(P(x+dx,y+dy,z+dz));
+  const minX=Math.min(...all.map(p=>p[0]))-6,maxX=Math.max(...all.map(p=>p[0]))+6;
+  const minY=Math.min(...all.map(p=>p[1]))-6,maxY=Math.max(...all.map(p=>p[1]))+6;
+  const W=maxX-minX,H=maxY-minY,sc=Math.min(size/W,size/H,1.4);
+  return `<svg viewBox="${minX.toFixed(0)} ${minY.toFixed(0)} ${W.toFixed(0)} ${H.toFixed(0)}" width="${Math.round(W*sc)}" height="${Math.round(H*sc)}">${faces}</svg>`;
+}
+
+/* ============ 3D 题库构型（数学正确性由 selfTest 断言） ============ */
+const C_L4=[[0,0,0],[1,0,0],[2,0,0],[2,1,0]];
+const C_BEND=[[0,0,0],[1,0,0],[1,1,0],[1,1,1]];
+const C_Z=[[0,0,0],[1,0,0],[1,0,1],[2,0,1]];
+const C_S5=[[0,0,0],[1,0,0],[2,0,0],[2,0,1],[2,1,1]];
+function rotN(cells,n){let c=cells.map(p=>[...p]);for(let i=0;i<n;i++)c=c.map(p=>rotY(p));return c;}
+/* 每题：target 渲染构型 + 选项构型列表（第一个恒为正确=同构旋转；干扰项不得同构，selfTest 断言） */
+const C_T=[[0,0,0],[1,0,0],[2,0,0],[1,1,0]];        /* T 形 */
+const C_Z2=[[0,0,0],[1,0,0],[1,1,0],[2,1,0]];       /* 平面 Z */
+const C_I4=[[0,0,0],[1,0,0],[2,0,0],[3,0,0]];       /* 直线 */
+const C_O=[[0,0,0],[1,0,0],[0,1,0],[1,1,0]];        /* 方块 */
+const C_U5=[[0,0,0],[1,0,0],[2,0,0],[2,0,1],[1,0,1]];      /* U 形 5 块 */
+const C_VS5=[[0,0,0],[1,0,0],[1,1,0],[1,1,1],[1,2,1]];     /* 竖蛇 5 块 */
+const ISO_QS=[
+ {t:rotN(C_L4,0),opts:[rotN(C_L4,2),C_T,C_Z2,C_I4]},
+ {t:rotN(C_BEND,1),opts:[applyAll(rotN(C_BEND,3),rotX),mirror(C_BEND),C_L4,C_Z2]},
+ {t:rotN(C_Z,0),opts:[rotN(C_Z,3),C_L4,C_T,C_O]},
+ {t:rotN(C_S5,2),opts:[rotN(C_S5,1),mirror(rotN(C_S5,2)),C_U5,C_VS5]}
+];
+
+/* ============ 题库 ============ */
 const QUESTIONS=[
- /* ── 一、认知反思 ── */
- {sec:0,w:1.2,a:2,trap:0,
-  text:`文创店里，一本笔记本和一支笔一共 <span class="hl">21 元</span>，笔记本比笔贵 <span class="hl">19 元</span>。这支笔多少钱？`,
-  opts:["2 元","10 元","1 元","1.5 元"],
-  explain:`设笔为 x 元，笔记本为 x+19 元：x+(x+19)=21，解得 x=1。直觉会立刻报「2 元」，但 1+20=21 才成立；若笔 2 元，总价应是 24 元。这是认知反思测验（CRT）的经典结构：测的不是算术，而是你有没有<b>按住第一反应、动笔验一遍</b>。`},
- {sec:0,w:1.2,a:2,trap:1,
-  text:`一条视频的播放量每天翻倍，第 <span class="hl">30 天</span>破 100 万。它在第几天达到 50 万？`,
-  opts:["第 15 天","第 10 天","第 29 天","第 28 天"],
-  explain:`每天翻倍意味着「往回一天就减半」：第 30 天 100 万，第 29 天恰好 50 万。直觉按比例折半得出 15，但指数增长的正确打开方式是逆向的。同样的结构藏在复利、传染人数、人口增长里——凡「每天翻倍」，先想减半倒推。`},
- {sec:0,w:1.1,a:0,trap:1,
-  text:`5 位画师 5 天完成 <span class="hl">5 幅</span>定制画。照这个效率，100 位画师完成 100 幅需要几天？`,
-  opts:["5 天","100 天","20 天","10 天"],
-  explain:`每位画师 5 天画 1 幅，100 位同时开工，5 天正好交 100 幅。直觉会把「100」到处搬运，得出 100 天。关键是先<b>归一化</b>：算出单人单周期的产出，再放大——拒绝归一化、直接在表面数字之间连线，是直觉思维的典型动作。`},
- {sec:0,w:1.0,a:1,trap:0,
-  text:`马拉松比赛进行中，你刚刚<b>超过了第二名</b>。你现在排第几？`,
-  opts:["第一名","第二名","第三名","无法确定"],
-  explain:`超过第二名后，你顶替的是他的位置——<b>第二名</b>，你前面还有第一名。直觉的画面感（「超过 → 我领先了」）抢在逻辑之前给出答案。画面越生动、答案越「显然」，越值得停半秒检查。`},
- {sec:0,w:1.1,a:2,trap:1,
-  text:`工人把一根钢管锯成 <span class="hl">4 段</span>用了 <span class="hl">12 分钟</span>。按同样速度，锯成 8 段要用多久？`,
-  opts:["24 分钟","32 分钟","28 分钟","16 分钟"],
-  explain:`锯成 4 段只需锯 <b>3 刀</b>，每刀 4 分钟；锯成 8 段需要 7 刀，共 28 分钟。「8 是 4 的两倍所以 24 分钟」是直觉陷阱——段数与刀数永远相差 1。敲钟、爬楼、剪绳子都是这个结构：先数「动作次数」，再算时间。`},
- /* ── 二、逻辑推理 ── */
- {sec:1,w:1.1,a:1,trap:0,
-  text:`便利店规定：<b>买啤酒的人必须年满 18 岁</b>。四个人同时进店，只能核验其中两位：<br>① 手里拿着啤酒　② 手里拿着可乐　③ 声称 16 岁　④ 声称 22 岁<br>核验哪两位，才能确保没有人违规？`,
-  opts:["① 和 ④","① 和 ③","② 和 ③","③ 和 ④"],
-  explain:`规则是「买啤酒 → 满 18」。拿啤酒的（①）必须查年龄；16 岁的（③）必须查有没有买酒——这两人是规则的必查点。拿可乐的没涉及酒，22 岁的买什么都不违规。这是沃森选择任务的生活版：同样的逻辑换成「喝酒查龄」，多数人立刻会做——<b>熟悉语境会大幅提升推理表现</b>，所以别太快原谅自己在陌生问题上的失误。`},
- {sec:1,w:1.2,a:1,trap:0,
-  text:`前提一：所有的桂花树都是树。<br>前提二：有些树一到秋天就落叶。<br>结论：<span class="hl">有些桂花树一到秋天就落叶</span>。<br>只看这两个前提，这个结论——`,
-  opts:["必然成立","不必然成立（前提全真时结论仍可能是假的）","必然为假","说不清前提是真是假"],
-  explain:`「秋天落叶的树」可能全是别的树（梧桐、银杏），一棵桂花树都不在其中，两个前提依然为真——所以结论<b>不必然成立</b>。容易读成必然，是因为桂花的画面在脑中不断成像（「气氛效应」）。严格推理只认逻辑形式：结论的范围一旦超出前提，推论就失效。`},
- {sec:1,w:1.1,a:2,trap:0,
-  text:`班里约定：「如果明天下雨，运动会就改到室内举行。」今天通知下来了：运动会改在室内。由此能严格推出——`,
-  opts:["明天下雨了","明天没下雨","都推不出来","明天天气如何说不清，但大概率下了雨"],
-  explain:`「下雨 → 改室内」不排除别的原因也改室内（场地冲突、空气质量）。看到结果就反推那个原因，叫<b>肯定后件谬误</b>——它是生活里大多数「我早就知道会这样」的来源。D 选项最像「合理的猜测」，但题目问的是<b>严格推出</b>：猜测再合理也不是推论。`},
- {sec:1,w:1.2,a:2,trap:0,
-  text:`法律规定：「<b>只有</b>年满 18 周岁，才能报名考驾照。」小张下个月满 18。由此能严格推出——`,
-  opts:["小张满 18 后就能报名","小张满 18 后也不能报名","两者都推不出来"],
-  explain:`「只有…才…」是<b>必要条件</b>而非充分条件：18 岁是门槛，但可能还有视力、健康等其他条件。满足门槛 ≠ 自动满足全部条件。「只要满 18 就能考」才是充分条件——一字之差，逻辑结构完全不同。合同、法条、规章里到处是这类措辞。`},
- /* ── 三、概率直觉 ── */
- {sec:2,w:1.5,a:3,trap:0,
-  text:`某疾病发病率 <span class="hl">千分之一</span>。检测很灵敏：患者检出阳性的概率 <span class="hl">90%</span>；但健康人也有 <span class="hl">9%</span> 被误报阳性。一个随机去体检的人查出<b>阳性</b>，他真患病的概率最接近——`,
+ /* ── 一、流体推理（矩阵，6 题）── */
+ {sec:0,w:0.9,a:0,stars:2,figM:true,figTitle:"观察九宫格规律：每行、每列各藏一条规则。",
+  mcell:(r,c)=>(r===2&&c===2)?null:m1cell(r,c),
+  mopts:()=>[m1cell(2,2),m1cell(2,0),m1cell(0,2),m1cell(2,2)], /* opt1 重画正确 */
+  fixOpts:[null,null],/* 占位 */
+  optDraw:i=>[()=>m1cell(2,2),()=>m1cell(0,2),()=>m1cell(1,1),()=>m1cell(2,1)][i](),
+  brief:"矩阵 · 数量与形状双规则",
+  explain:`两条规则同时生效：<b>每行</b>图形数量 1→2→3 递增；<b>每列</b>形状统一（圆→方→三角）。因此问号处应为<b>3 个三角形</b>。瑞文测验的入门结构：先分别找出行规则与列规则，再在交叉点把它们组合。`},
+ {sec:0,w:1.1,a:1,stars:2,figM:true,figTitle:"观察九宫格规律：黑点在格内的位置如何变化？",
+  mcell:(r,c)=>(r===2&&c===2)?null:m2cell(r,c),
+  optDraw:i=>[()=>m2cell(1,2),()=>m2cell(2,2),()=>m2cell(2,1),()=>m2cell(0,1)][i](),
+  brief:"矩阵 · 位置移动规则",
+  explain:`黑点的<b>纵向位置</b>随行下移；<b>横向位置</b>在每行内从左向右移动一格（到行尾回到起点）。第三行已见「左→中」，问号处应为<b>底行右侧</b>。位置类规则要同时盯住两个维度：行控制什么、列控制什么。`},
+ {sec:0,w:1.2,a:2,stars:3,figM:true,figTitle:"每行、每列中，形状与填充各出现一次（缺什么补什么）。",
+  mcell:(r,c)=>(r===2&&c===2)?null:m3cell(r*3+c),
+  optDraw:i=>[()=>m3cell(0),()=>m3cell(3),()=>svgWrap(shapeSVG("square",FILLS.solid,0,60),60),()=>m3cell(7)][i](),
+  brief:"矩阵 · 拉丁方（分配三原则）",
+  explain:`规则叫「三分配」：圆形、方形、菱形在每行每列各出现一次；实心、空心、影线填充也各出现一次。第三行已有菱（空）和圆（影），缺<b>方</b>；填充已有空与影，缺<b>实心</b>——所以是<b>实心方形</b>（第二行中列那个图形的形状 + 第一行首列的填充）。`},
+ {sec:0,w:1.3,a:3,stars:3,figM:true,figTitle:"观察每行从左到右图形如何「生长」。",
+  mcell:(r,c)=>(r===2&&c===2)?null:m4cell(r,c),
+  optDraw:i=>[()=>m4cell(2,0),()=>m4cell(2,1),()=>m4cell(2,2),()=>m4cell(0,2)][i](),
+  brief:"矩阵 · 笔画累加（部分-整体）",
+  explain:`每行从左到右<b>依次增加一笔</b>，且新笔画接在已有图形上。第三行已有 3 笔（横、竖、斜角），问号处应为<b>4 笔的完整形态</b>——注意它不是任何其他行图形的复制，而是第三行自己长出来的。瑞文 APM 的经典「部分-整体」结构。`},
+ {sec:0,w:1.35,a:0,stars:4,figM:true,figTitle:"每格中竖线的数量满足一条算术规则（看行）。",
+  mcell:(r,c)=>{if(r===2&&c===2)return null;const M=[[5,2,3],[4,1,3],[6,4,null]];return m5cell(M[r][c]);},
+  optDraw:i=>[()=>m5cell(2),()=>m5cell(10),()=>m5cell(3),()=>m5cell(4)][i](),
+  brief:"矩阵 · 数量算术",
+  explain:`行规则：<b>第三列 = 第一列 − 第二列</b>（5−2=3，4−1=3）。所以问号处 = 6−4 = <b>2 条竖线</b>。数量算术题的陷阱是把它当成「视觉题」慢慢比——先数清前两行验证算术关系，第三行直接套用。`},
+ {sec:0,w:1.45,a:1,stars:5,figM:true,figTitle:"第三列 = 第一列与第二列按规则合成（同去异留）。观察前两行，推出第三行。",
+  mcell:(r,c)=>(r===2&&c===2)?null:m6cell(r,c),
+  optDraw:i=>[()=>m6set(m6xor(0)),()=>m6set(m6xor(2)),()=>m6set(m6xor(1)),()=>m6set([["circle","solid"],["triangle","solid"],["diamond","solid"]])][i](),
+  brief:"矩阵 · 异或叠加（高难）",
+  explain:`前两行揭示规则：<b>第三列 = 第一、二列的异或</b>——两边都有的形状消失，只出现了一边的形状保留。第一行 {●■}{■▲}→{●▲}；第二行 {◆●}{●▲}→{◆▲}。第三行 {●◆}{◆▲}→<b>{●▲}</b>。这是瑞文 APM 高段与门萨常见的叠加消除结构，全球高分组也常在此失手。`},
+ /* ── 二、视觉空间（3D 旋转，4 题）── */
+ {sec:1,w:1.1,a:0,stars:2,fig3d:0,
+  brief:"3D 旋转 · L 形构型",
+  text:"选出与左侧目标<b>旋转后完全相同</b>的图形（其余选项是它的镜像或不同构型）。",
+  explain:`正确选项与目标只是视角不同——在你脑中把它整体转动即可重合。<b>镜像项</b>是最大的陷阱：它和目标像到「一模一样」，但无论怎么转都无法重合（就像你的左右手）。心理旋转能力的关键操作就是区分这两者。Shepard & Metzler（1971）发现：图形角差越大，人们反应越慢且误差越大——旋转是在脑中真实「执行」的。`},
+ {sec:1,w:1.2,a:0,stars:3,fig3d:1,
+  brief:"3D 旋转 · 立体弯折",
+  text:"选出与目标<b>旋转后完全相同</b>的构型。小心镜像干扰。",
+  explain:`这道构型向两个方向弯折（先横、再竖、再向深度），需要在脑中建立三维坐标。一个实用策略：<b>链式追踪</b>——沿方块链依次记录「直行/左转/右转/上行」的顺序，再与选项对照；拐弯顺序一致的是同构，某一步拐向相反的大概率是镜像。`},
+ {sec:1,w:1.3,a:0,stars:3,fig3d:2,
+  brief:"3D 旋转 · Z 形构型",
+  text:"选出与目标<b>旋转后完全相同</b>的构型。",
+  explain:`Z 形平面构型容易被当成平面图形处理——但选项的视角经过三维旋转后，平面会「立起来」。若仍想象困难，退回链式追踪：目标链是「两格直行 → 折 90° → 直行」，选项中只有一条链保持完全相同的拐弯序列。`},
+ {sec:1,w:1.4,a:0,stars:4,fig3d:3,
+  brief:"3D 旋转 · 五块蛇形",
+  text:"选出与目标<b>旋转后完全相同</b>的五块构型。这是本节最难的一题。",
+  explain:`五块构型的旋转自由度更高，镜像与变形干扰同时出现。Vandenberg & Kuse 心理旋转量表的数据显示：即便在大学生群体中，这类题的个体差异也极大——它与人是否「在脑中构建三维模型」还是「在二维画面上做模式匹配」密切相关。前一种策略才能稳定做对。`},
+ /* ── 三、定量推理（数列，4 题）── */
+ {sec:2,w:1.0,a:2,stars:2,
+  text:`推断下一个数：<div class="numline">2 &nbsp;6 &nbsp;12 &nbsp;20 &nbsp;30 &nbsp;?</div>`,
+  opts:["36","40","42","44"],
+  explain:`一阶差是 4、6、8、10——公差为 2 的等差，下一个差是 12，30+12=<b>42</b>。也可以直接看出通项 n(n+1)：1×2、2×3、3×4、4×5、5×6、6×7。<b>先做一阶差</b>永远是数列的第一步。`},
+ {sec:2,w:1.15,a:1,stars:3,
+  text:`推断下一个数：<div class="numline">4 &nbsp;9 &nbsp;25 &nbsp;49 &nbsp;121 &nbsp;?</div>`,
+  opts:["144","169","196","225"],
+  explain:`这些是<b>质数的平方</b>：2²、3²、5²、7²、11²，下一个质数是 13，13²=<b>169</b>。直觉常常滑向「平方数」（144=12²），因为 4、9、25 里混着完全平方——但 49、121 锁定了质数序列。识别「序列的种子」比识别运算更难，这正是本题的考点。`},
+ {sec:2,w:1.3,a:2,stars:4,
+  text:`推断下一个数：<div class="numline">3 &nbsp;30 &nbsp;5 &nbsp;26 &nbsp;8 &nbsp;21 &nbsp;13 &nbsp;?</div>`,
+  opts:["25","17","15","19"],
+  explain:`<b>交错数列</b>：奇数位 3、5、8、13 是斐波那契（前两项相加）；偶数位 30、26、21、? 的差是 −4、−5、−6，下一个差 −7，21−7=<b>15</b>。交错题的标准信号：整体毫无规律、忽大忽小——立刻拆奇偶位分别看。`},
+ {sec:2,w:1.4,a:0,stars:5,
+  text:`推断下一个数（提示：读出前一项）：<div class="numline">1 &nbsp;11 &nbsp;21 &nbsp;1211 &nbsp;111221 &nbsp;?</div>`,
+  opts:["312211","111222","122111","212211"],
+  explain:`这是<b>外观数列</b>（look-and-say）：每一项是「读出前一项」。1 读作「1 个 1」→11；11 读作「2 个 1」→21；21 读作「1 个 2、1 个 1」→1211；1211→「1 个 1、1 个 2、2 个 1」→111221；111221 读作「3 个 1、2 个 2、1 个 1」→<b>312211</b>。跳出「数字=数量运算」的框架、想到「数字可以被朗读」，是发散性的关键一跃。`},
+ /* ── 四、言语推理（3 题）── */
+ {sec:3,w:1.0,a:2,stars:2,
+  text:`「疫苗 ∶ 预防疾病」——下列哪一对词保持<b>完全相同的关系</b>？`,
+  opts:["医院 ∶ 医生","防火墙 ∶ 网络攻击","体检报告 ∶ 身体状况","抗生素 ∶ 药店"],
+  explain:`关系是「<b>工具 ∶ 它所阻止的危害</b>」：疫苗阻止疾病，防火墙阻止网络攻击。A 是场所与人员；C 是记录与对象；D 是并列/类别关系。类比推理的核心动作：先用一句话<b>说清楚</b>原对的关系，再逐项套用这句话——说不清楚就动手选，错误率会翻倍。`},
+ {sec:3,w:1.2,a:0,stars:3,
+  text:`「举重若轻」中的「若」，与下列哪个成语中的「若」意思<b>相同</b>？`,
+  opts:["若无其事","若非如此","若要人不知，除非己莫为","若即若离的第一个「若」"],
+  explain:`「举重若轻」的「若」= <b>像</b>（把重物弄得像轻物一样）。「若无其事」= 像没有那回事一样，同为「像」；「若非」= 如果；「若要」= 如果；「若即若离」= 好像。言语推理测的是<b>对高频字词的精确分辨</b>——字都认识，差别在被明确意识到与否。`},
+ {sec:3,w:1.25,a:1,stars:4,
+  text:`论证：「狮子座的人都自信；他很自信；所以他是狮子座。」<br>下列哪个论证与它<b>犯了完全相同的结构性错误</b>？`,
+  opts:["买彩票的人都想中奖；老王总想中奖；所以老王买彩票","咖啡都含咖啡因；这杯饮料含咖啡因；所以这杯是咖啡","下雨地会湿；地湿了；所以下过雨——这明显不对","学生都要考试；他是学生；所以他要考试"],
+  explain:`原论证的结构：A→B；C 是 B；所以 C 是 A（肯定后件）。<b>咖啡题</b>与此结构完全一致（咖啡→咖啡因；饮料含咖啡因；所以是咖啡）。A「彩票题」结构相同但它是生活归纳题其实也是同构——注意 A 的「总想中奖」与「想中奖」群体泛化，结构同为肯定后件。最严格同构的是 B：范畴→属性，具备属性→属于范畴。C 自己也指出错了（不需要选「明显不对」的，要选<b>错误方式相同</b>的）；D 是有效推理。区分「结论可信」与「推理有效」正是本题考点——B 的结论很可能为真，但<b>推理形式无效</b>。`},
+ /* ── 五、逻辑推理（3+1 题）── */
+ {sec:4,w:1.5,a:1,stars:5,
+  text:`四张卡片，一面是<b>字母</b>，一面是<b>数字</b>。有人声称：「凡一面是<b>元音</b>的卡片，另一面必是<b>偶数</b>。」露出 A、K、4、7 四个面。最少翻哪几张即可检验这句话真假？<br><span style="font-weight:400;font-size:13.5px;color:var(--ink2)">（Wason 1966 原始形态；全球实验室通过率不足 10%）</span>`,
+  opts:["A 和 4","A 和 7","A、K、4、7 全翻","4 和 7"],
+  explain:`规则只约束「元音→偶数」：A 背后若是奇数即推翻规则，<b>必须翻</b>；7 背后若是元音同样推翻，<b>必须翻</b>；K 是辅音，无关；4 背后即便是元音也不违反规则。所以是 <b>A 和 7</b>。人们本能地翻「A 和 4」（确认正例），却放过真正能证伪的 7——<b>证伪意识</b>的缺失是这题失利的根源。换成「查未成年人买酒」，多数人立刻全对：逻辑能力没变，是熟悉语境激活了它。`},
+ {sec:4,w:1.3,a:2,stars:4,
+  text:`已知：① 如果周五下雨，运动会延期；② 如果运动会延期，期中考试提前。<br>现在确定：<b>期中考试没有提前</b>。能严格推出——`,
+  opts:["周五下了雨","周五没下雨，但运动会仍延期了","周五没下雨","无法确定周五是否下雨"],
+  explain:`假言连锁 + 否定后件：期中没提前 → （由②逆否）运动会<b>没延期</b> → （由①逆否）<b>周五没下雨</b>。B 选项自相矛盾（没延期却说延期）。多数人卡在「逆否」这一步——「下雨→延期」为真时，「没延期→没下雨」必然为真，这是条件推理里最值得练成肌肉记忆的等价变换。`},
+ {sec:4,w:1.15,a:2,stars:3,
+  text:`前提一：有些艺术家并不富有。<br>前提二：所有富人都很快乐。<br>结论：「有些艺术家不快乐」——`,
+  opts:["必然成立","必然不成立","推不出来（前提全真时结论真假不明）","前提自相矛盾"],
+  explain:`不富有的艺术家在「富人」之外，而前提二只说<b>富人都快乐</b>，没说「只有富人才快乐」——贫穷但快乐的艺术家完全可能存在。所以结论<b>推不出来</b>。三段论的铁律：结论里的每个词的「范围」都必须被前提覆盖；「所有 A 都 B」绝不等于「所有 B 都 A」。`},
+ {sec:4,w:0.0,a:2,att:true,stars:0,
+  text:`这是一道<b>读题检查</b>，不计分数。请直接选择「丙」。`,
+  opts:["甲","乙","丙","丁"],
+  explain:`读题检查：用于识别「扫一眼就选」的作答模式。`},
+ /* ── 六、概率与理性（6 题）── */
+ {sec:5,w:1.2,a:2,stars:4,
+  text:`去程 60 km/h、回程 90 km/h 走同一条路。全程<b>平均速度</b>最接近——`,
+  opts:["75 km/h","72 km/h","78 km/h","70 km/h"],
+  explain:`平均速度 = 总路程 ÷ 总时间，与速度的<b>调和平均</b>（不是算术平均）：设单程 180 km，去 3 小时、回 2 小时，360÷5=<b>72 km/h</b>。慢速段占用的时间更长、权重更大。这题是「直觉平均」的经典陷阱——凡是平均<b>率</b>（速度、单价、效率）都要先想分母是什么。`},
+ {sec:5,w:1.5,a:3,stars:4,
+  text:`某疾病发病率 <span class="hl">千分之一</span>。检测灵敏度 <span class="hl">90%</span>（患者呈阳性），健康人<b>误报率 9%</b>。随机一人查出阳性，真患病概率最接近——<br><span style="font-weight:400;font-size:13.5px;color:var(--ink2)">（此题原型出自《新英格兰医学杂志》，哈佛医学生仅约 18% 答对）</span>`,
   opts:["90%","约 50%","约 10%","约 1%"],
-  explain:`想象 10000 人：患者约 10 人，其中 9 人呈阳性；健康人约 9990，其中 9%（约 899 人）被误报。阳性共约 908 人，真患者占 9/908 ≈ <b>1%</b>。事件越罕见，阳性里误报的比例越大——这叫<b>基础率忽视</b>。研究里医生群体也普遍高估。实用技巧：把概率换算成「每 10000 人里有几人」再判断。`},
- {sec:2,w:1.0,a:2,trap:0,
-  text:`一对夫妇已经生了 <span class="hl">3 个女孩</span>。第 4 胎是男孩的概率是——`,
-  opts:["大于 50%（该轮到男孩了）","小于 50%（这家的体质偏向女孩）","约 50%","无法估计"],
-  explain:`每次受孕是独立事件，概率不随历史变化，仍约 50%。「该轮到男孩了」是<b>赌徒谬误</b>，「这家里女孩体质」是<b>热手谬误</b>——方向相反、结构相同：都把随机序列当成了有节奏的剧情。直觉觉得「连生三个女孩很反常」，其实它和任何组合一样平常。`},
- {sec:2,w:1.3,a:2,trap:0,
-  text:`直播间有三个盲盒，只有一个藏着头奖。你先选了 1 号。<b>知道答案</b>的主播打开 3 号盒——空的，然后问：「要不要换 2 号？」换的话，中奖概率是——`,
+  explain:`想象 10000 人：患者 10 人，9 人呈阳性；健康人 9990，9%≈899 人误报。阳性共约 908 人，真患者 9/908 ≈ <b>1%</b>。罕见事件 + 任何误报率 → 阳性者绝大多数是误报（<b>基础率忽视</b>）。技巧：永远换算成「每 10000 人中有几人」的自然频数。`},
+ {sec:5,w:1.3,a:2,stars:5,
+  text:`新药 A 与旧药 B：分别在<b>男性组</b>和<b>女性组</b>里，A 的治愈率都更高；但把两组<b>合并</b>统计，B 反而更高。这——`,
+  opts:["不可能，数据一定造假","完全可能：两组病人构成比例悬殊所致（辛普森悖论）","说明分组数据错了，应以合计为准","说明统计本身不可信"],
+  explain:`这就是<b>辛普森悖论</b>：当新药组里重症（难治愈）患者占比远高于旧药组时，即使分组对比全面占优，合并后被重症拖累，总数也可能落后。真实案例：1973 年伯克利大学录取率的性别差异、两种肾结石疗法的效果比较。<b>合计数字可能撒谎，分层才见真相</b>——看到任何汇总统计，先问分层结果。`},
+ {sec:5,w:1.2,a:2,stars:3,
+  text:`直播间三个盲盒只有一个有头奖。你选了 1 号，<b>知道答案</b>的主播打开 3 号（空的），问「换 2 号吗？」换的中奖率——`,
   opts:["1/2","1/3","2/3","换不换一样"],
-  explain:`你首选命中的概率是 1/3，落空 2/3。主播开门是「知情展示」，不改变比例，只是把那 2/3 集中到另一只没开的盒子上。枚举验证：奖在 1 号时换就输，在 2、3 号时换都赢——2/3。直觉答 1/2 忽略了「主播刻意避开了奖」这层信息不对称：他开门不是随机，而是带信息的动作。`},
- {sec:2,w:1.3,a:0,trap:1,
-  text:`小林 28 岁，哲学系毕业，大学是辩论队主力，长期关注环保与动物保护，参加过多次公益行动。以下哪种情况<b>更可能</b>为真？`,
-  opts:["小林在银行工作","小林在银行工作，且是活跃的环保志愿者","两种一样可能"],
-  explain:`两个事件同时发生的概率不可能大于单个事件：「在银行工作 <b>且</b> 环保志愿者」是前者的子集，必然更少。但描述越具体、画面越连贯，大脑越觉得可信——这叫<b>合取谬误</b>。卡尼曼的实验里约 85% 的名校学生选了后者。<b>故事讲得通 ≠ 更可能发生</b>，这是阴谋论和精致骗局共同利用的漏洞。`},
- {sec:2,w:1.1,a:1,trap:2,
-  text:`同一家产科，A 院区每天出生 <span class="hl">45 个</span>婴儿，B 院区每天约 <span class="hl">15 个</span>。统计一整年，哪个院区「当天男孩占比超过 60%」的<b>天数</b>更多？`,
-  opts:["A 院区（大）","B 院区（小）","基本一样多"],
-  explain:`样本越小，比例的随机波动越大。B 院区 15 个婴儿里 9 个男孩就超过 60%，这种波动常出现；A 院区要 27/45 以上才超标，难得一见。把小样本的波动当成真实规律，叫<b>小数定律</b>谬误——「我朋友吃了偏方就好了」「这软件连着三次出错」都是它的日常形态。看到任何结论先问：样本多大？`},
- /* ── 四、偏差识别 ── */
- {sec:3,w:1.2,a:1,trap:0,
-  text:`二战时军方统计<b>返航</b>轰炸机的弹孔：机翼、机身弹孔密集，发动机部位几乎没弹孔。装甲有限，应优先加固哪里？`,
-  opts:["弹孔最密集的机翼","几乎没有弹孔的发动机","全机均匀加固"],
-  explain:`返航飞机展示的是「中弹还能飞回来」的位置；发动机中弹的飞机大多坠毁了，根本没回来接受统计。数据里<b>最少的弹孔，恰恰标记着最致命的位置</b>——统计学家沃德由此说服军方加固发动机。凡是「看得见的数据」都先问一句：没被看见的那部分，是怎么被筛掉的？成功学、用户反馈、中奖名单，无一例外。`},
- {sec:3,w:0.9,a:1,trap:0,
-  text:`你花 680 元买了张演唱会门票（不可转退）。演出当天你重感冒、暴雨预警。怎样选择最理性？`,
-  opts:["带病去，680 元不能白花","不去，在家休息","纠结到开场前再决定"],
-  explain:`无论去不去，680 元都回不来了——它是<b>沉没成本</b>，理性决策只比较「接下来的时间和健康怎么安排更好」。「票都买了」「来都来了」「都谈三年了」是同一个谬误的日常形态：用更多投入去补偿已经损失的投入。能切割沉没成本的人不是无情，而是把账算在了<b>未来</b>。`},
- {sec:3,w:1.1,a:2,trap:0,
-  text:`统计发现：一座城市里<span class="hl">奶茶店越多</span>的年份，<span class="hl">房价涨得越快</span>。最合理的解释是——`,
-  opts:["奶茶店带动了商圈，推高房价","房价上涨让人有钱消费奶茶","城市经济与人口增长同时推高了两者"],
-  explain:`两个变量一起变动，不代表谁导致谁——很可能是第三个因素（经济、人口、收入）在共同驱动，也可能纯属巧合。<b>相关不等于因果</b>人人会说，但落在具体数字上时，大脑的故事本能总是抢先给出因果剧本。看到「A 与 B 显著相关」的新闻，第一反应应该是找第三变量和反向因果。`},
- {sec:3,w:0.0,a:2,att:true,
-  text:`这是一道<b>读题检查</b>，不计分数。请直接选择「蓝色」。`,
-  opts:["红色","绿色","蓝色","黄色"],
-  explain:`读题检查：认真读题就能答对，用于识别「扫一眼就选」的作答模式。`},
- {sec:3,w:1.0,a:0,trap:2,
-  text:`同一场手术的同一个统计事实，两种说法：<br>说法 A：「术后一个月<b>存活率 90%</b>。」<br>说法 B：「术后一个月<b>死亡率 10%</b>。」<br>实验发现，患者听到哪种说法更倾向于同意手术？`,
-  opts:["说法 A（存活率）","说法 B（死亡率）","两种说法效果完全相同"],
-  explain:`90% 存活与 10% 死亡是<b>同一个事实</b>，但人们的选择会随表述方向显著改变——这叫<b>框架效应</b>（卡尼曼与特沃斯基发现）。它证明：人对「事实」的反应，很大程度取决于事实被包装的方式。高认知的人有个习惯：听到任何单一表述，主动翻译成相反框架（「成功率 90%」↔「失败率 10%」），核对一下自己的感受是否被措辞操纵了。`},
- /* ── 五、模式推理 ── */
- {sec:4,w:1.0,a:1,trap:0,
-  text:`找出规律，推断下一个数：<div class="numline">2 &nbsp;5 &nbsp;11 &nbsp;23 &nbsp;47 &nbsp;?</div>`,
-  opts:["71","95","94","93"],
-  explain:`后一项 = 前一项 ×2 + 1：2→5→11→23→47→<b>95</b>。数列的通用策略：先看相邻差值（3、6、12、24、48，每次翻倍），差值本身就是一条新数列——<b>规律套规律</b>是这类题的钥匙。`},
- {sec:4,w:1.1,a:2,trap:0,
-  text:`找出规律，推断下一个数：<div class="numline">1 &nbsp;4 &nbsp;10 &nbsp;22 &nbsp;46 &nbsp;?</div>`,
-  opts:["58","92","94","70"],
-  explain:`差值依次是 3、6、12、24、48（每次翻倍），46+48=<b>94</b>。能发现「规律可以有多条路径」本身就是高阶能力——验证答案同时满足多种结构时，置信度才配得上「非常确定」。`},
- {sec:4,w:1.2,a:2,trap:0,
-  text:`观察每行三个数之间的规律：<div class="numtab"><i>第一行</i><span>4</span><span>9</span><span>19</span><i>第二行</i><span>5</span><span>11</span><span>23</span><i>第三行</i><span>6</span><span>13</span><span class="qm">?</span></div>`,
-  opts:["25","26","27","29"],
-  explain:`每行后一个数 = 前一个数 ×2 + 1：4→9→19；5→11→23；6→13→<b>27</b>。二维结构比一维数列多一层抽象：要假设「每行独立遵循同一规则」——这正是矩阵推理（瑞文测验）的基本思维单元。`},
- {sec:4,w:1.3,a:1,trap:0,fig:true,
-  text:`九宫格中的图形按规律变化（行、列各有规律）。<span class="hl">?</span> 处应填哪个图形？`,
-  opts:null,figAngles:[135,180,225,270],
-  explain:`每个图形相对左上角：每向右或向下前进一格，就<b>逆时针旋转 45°</b>。第一行 0°、45°、90°；第二行 45°、90°、135°；第三行 90°、135°、<b>180°</b>。验证方式：沿任意行、任意列前进，旋转增量都恒为 45°，两条路径互相印证。图形旋转矩阵测的是脱离语言内容的抽象规则发现能力。`}
+  explain:`首选命中 1/3、落空 2/3；主持人<b>知情</b>开门不改变比例，只是把 2/3 集中到另一只盒子。枚举：奖在 1 号换则输，在 2、3 号换则赢——<b>2/3</b>。直觉答 1/2 忽略了「他刻意避开头奖」的信息不对称。`},
+ {sec:5,w:1.25,a:0,stars:3,
+  text:`小林 28 岁，哲学系毕业，辩论队主力，长期关注环保与动物保护。哪种情况<b>更可能</b>为真？`,
+  opts:["小林在银行工作","小林在银行工作，且是活跃的环保志愿者","两者一样可能"],
+  explain:`合取概率不可能超过单项概率：「银行工作 <b>且</b> 环保志愿者」是前者的子集。但描述越具体、画面越连贯，大脑越信——<b>合取谬误</b>（卡尼曼与特沃斯基实验中约 85% 的名校学生中招）。<b>故事讲得通 ≠ 更可能发生</b>；这是阴谋论与精致骗局共同利用的漏洞。`},
+ {sec:5,w:1.05,a:1,stars:2,
+  text:`二选一：A. 稳拿 <span class="hl">240 元</span>；B. 25% 拿 <span class="hl">1000 元</span>、75% 一分没有。只从<b>期望值</b>看，哪个更划算？`,
+  opts:["A 划算","B 划算（期望 250 元）","无法比较"],
+  explain:`B 的期望 = 0.25×1000 = <b>250 元</b> > 240。这是卡尼曼与特沃斯基前景理论的开篇实验：多数人选 A（确定性效应）——注意：<b>选 A 不是不理性</b>（风险偏好因人而异），但题目问的是期望值，答 A 的人往往没算，只是被「稳」字劫持了。知道自己在什么时候偏离期望值，才是理性。`}
 ];
 
-const WM_LEVELS=[5,6,7];
-const WM_SECONDS=[3.4,4.0,4.6];
+/* ───────── 工作记忆 ───────── */
+const NB_LEN=20,NB_TARGETS=6;
+const WM_LEVELS=[6,7];
+const WM_SECONDS=[4.0,4.6];
+function genNBack(){
+  const tpos=[];let guard=0;
+  while(tpos.length<NB_TARGETS&&guard++<500){
+    const p=3+Math.floor(Math.random()*(NB_LEN-3));
+    if(!tpos.includes(p)&&tpos.every(q=>Math.abs(q-p)>=2))tpos.push(p);
+  }
+  tpos.sort((a,b)=>a-b);
+  const seq=new Array(NB_LEN).fill(null);
+  tpos.forEach(p=>{seq[p]=p>=2?seq[p-2]:null;}); /* 占位，第二步回填 */
+  for(let i=0;i<NB_LEN;i++){
+    if(tpos.includes(i)){seq[i]=seq[i-2];continue;}
+    let d;do{d=1+Math.floor(Math.random()*9);}while((i>=1&&d===seq[i-1])||(i>=2&&d===seq[i-2]));
+    seq[i]=d;
+  }
+  return{seq:seq.map(x=>x==null?5:x),tpos};
+}
+const WM_STEPS=1+WM_LEVELS.length; /* n-back + 倒叙×2 */
 
 /* ───────── 状态 ───────── */
-const LSK="cog-compass-v2";
+const LSK="cog-compass-v3";
 function newState(){return{v:VERSION,stage:"intro",qi:0,wi:0,secIdx:0,
   answers:new Array(QUESTIONS.length).fill(null),
-  wm:[],selfRating:null,startedAt:Date.now()};}
+  wm:[],nb:null,selfRating:null,startedAt:Date.now()};}
 function save(){try{localStorage.setItem(LSK,JSON.stringify(S));}catch(e){}}
 function loadSaved(){try{const s=JSON.parse(localStorage.getItem(LSK));if(s&&s.v===VERSION&&s.stage)return s;}catch(e){}return null;}
 let S=loadSaved()||newState();
@@ -383,21 +563,23 @@ if(PARAMS.get("__reset")==="1"){localStorage.removeItem(LSK);S=newState();}
 if(PARAMS.get("__demo")==="1"){S=seedDemo();}
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function seedDemo(){
-  const s=newState(),rng=mulberry(7);
+  const s=newState(),rng=mulberry(11);
   QUESTIONS.forEach((q,i)=>{
-    const good=rng()<.68;
-    let choice=good?q.a:((q.trap!=null&&rng()<.7)?q.trap:Math.floor(rng()*(q.fig?q.figAngles.length:q.opts.length)));
+    const good=rng()<.66;
+    let choice=good?q.a:Math.floor(rng()*(q.opts?q.opts.length:4));
     const conf=good?(rng()<.5?2:1):(rng()<.55?2:1);
-    s.answers[i]={choice,conf,timeMs:6000+Math.floor(rng()*14000)};
+    s.answers[i]={choice,conf,timeMs:7000+Math.floor(rng()*14000)};
   });
-  s.wm=[{seq:"83175",input:"57138",ok:true},{seq:"492613",input:"316294",ok:true},{seq:"5738126",input:"9",ok:false}];
-  s.selfRating=76;s.stage="result";return s;
+  const nb=genNBack();
+  s.nb={seq:nb.seq,tpos:nb.tpos,results:nb.tpos.map(p=>({idx:p,ok:true})),fa:2,done:true};
+  s.wm=[{seq:"831756",input:"657138",ok:true},{seq:"4926138",input:"9",ok:false}];
+  s.selfRating=78;s.stage="result";return s;
 }
 
 /* ───────── 渲染调度 ───────── */
 const $=s=>document.querySelector(s);
 const stageEl=$("#stage");
-const TOTAL=QUESTIONS.length+WM_LEVELS.length;
+const TOTAL=QUESTIONS.length+WM_STEPS;
 function stepNow(){
   switch(S.stage){
     case"q":return S.qi+1;
@@ -421,7 +603,7 @@ function render(){
   else if(S.stage==="q")renderQ();
   else if(S.stage==="wm")renderWM();
   else if(S.stage==="result")renderResult();
-  window.scrollTo({top:0,behavior:"instant"in window?"instant":"auto"});
+  window.scrollTo({top:0});
 }
 function go(st){S.stage=st;save();render();}
 
@@ -430,101 +612,100 @@ function logoSVG(sz){
   return `<svg viewBox="0 0 160 160" width="${sz}" height="${sz}">
     <polygon points="80,10 143,46 143,114 80,150 17,114 17,46" fill="#fff" stroke="#4656D8" stroke-width="4"/>
     <polygon points="80,32 122,56 122,104 80,128 38,104 38,56" fill="none" stroke="#D8DCF6" stroke-width="2"/>
-    <g><line x1="80" y1="46" x2="80" y2="26" stroke="#B9C1F0" stroke-width="3"/>
     ${[1,2,3,4,5].map(i=>{const a=(-90+i*60)*Math.PI/180;return`<line x1="${80+12*Math.cos(a)}" y1="${80+12*Math.sin(a)}" x2="${80+30*Math.cos(a)}" y2="${80+30*Math.sin(a)}" stroke="#B9C1F0" stroke-width="3"/>`;}).join("")}
-    </g>
     <g transform="rotate(24 80 80)"><path d="M80 52 L87 88 L80 98 L73 88 Z" fill="#4656D8"/><path d="M80 122 L86 92 L80 84 L74 92 Z" fill="#F59E0B" opacity=".9"/></g>
-    <circle cx="80" cy="80" r="6" fill="#181F30"/><circle cx="80" cy="80" r="2.4" fill="#fff"/>
-  </svg>`;
+    <circle cx="80" cy="80" r="6" fill="#181F30"/><circle cx="80" cy="80" r="2.4" fill="#fff"/></svg>`;
 }
 function renderIntro(){
   const saved=loadSaved();
   stageEl.innerHTML=`
   <div class="card hero">
-    ${logoSVG(120)}
-    <div class="h-kicker">COGNITIVE COMPASS</div>
+    ${logoSVG(108)}
+    <div class="h-kicker">COGNITIVE COMPASS · PRO</div>
     <h1>认知罗盘</h1>
-    <div class="h-sub">测一测你的认知水平 —— 不是娱乐问答，是认真的六维评估</div>
+    <div class="h-sub">对标国际标准测验体系的专业认知评估<br>七维能力画像 · 全部题目源自发表过论文的经典范式</div>
+    <div class="h-bench">
+      <span class="benchpill">ICAR 国际认知能力资源</span><span class="benchpill">瑞文 APM 矩阵</span><span class="benchpill">Vandenberg-Kuse 心理旋转</span><span class="benchpill">n-back (CBS)</span><span class="benchpill">CRT / 卡尼曼-特沃斯基</span>
+    </div>
     <div class="pillrow">${SECTIONS.map(s=>`<span class="pill">${s.icon} ${s.name}</span>`).join("")}</div>
     <div class="h-stats">
       <div><div class="v">${TOTAL}</div><div class="k">个小任务</div></div>
-      <div><div class="v">≈12</div><div class="k">分钟完成</div></div>
-      <div><div class="v">6</div><div class="k">个认知维度</div></div>
+      <div><div class="v">≈18</div><div class="k">分钟完成</div></div>
+      <div><div class="v">7</div><div class="k">个 CHC 维度</div></div>
     </div>
-    <div class="h-note"><b>开始前请知悉：</b>每题答完需选一下「把握程度」，它参与元认知评估，请如实；中途别查资料、别用计算器——测的是你此刻的大脑；答完不能回看修改，这是测量有效性的要求。</div>
+    <div class="h-note"><b>开始前请知悉：</b>① 题目难度按国际测验标准设置，<b>答不出很正常</b>——顶级测验的题目本来就要让人错；② 每题需选「把握程度」，参与元认知评估；③ 别查资料、别用纸笔（题目说明允许除外）；④ 答完不能回看修改。</div>
     <button class="btn" id="btnGo">开始测试</button>
-    ${saved&&saved.stage!=="intro"&&saved.stage!=="result"?`<button class="btn ghost" id="btnResume" style="margin-top:12px">继续上次（第 ${stepNowOf(saved)} 步）</button>`:""}
+    ${saved&&saved.stage!=="intro"&&saved.stage!=="result"?`<button class="btn ghost" id="btnResume" style="margin-top:12px">继续上次</button>`:""}
     <div class="linkline">${saved&&saved.stage!=="intro"?`<a id="lnkClear">清除本地记录</a>`:"结果仅供自我了解 · 非临床诊断"}</div>
   </div>
-  <footer>范式来源：认知反思测验（Frederick 2005）· 选择任务（Wason 1966）· 卡尼曼与特沃斯基概率判断 · 瑞文式矩阵 · 数字倒叙广度</footer>`;
+  <footer>维度框架：CHC 认知能力模型 · 题型来源：ICAR / Raven APM / Shepard-Metzler / Wason / Kahneman & Tversky / n-back</footer>`;
   $("#btnGo").onclick=()=>{S=newState();S.stage="self";save();render();};
   const r=$("#btnResume");if(r)r.onclick=()=>{S=loadSaved();render();};
   const c=$("#lnkClear");if(c)c.onclick=()=>{localStorage.removeItem(LSK);render();};
-}
-function stepNowOf(s){
-  if(s.stage==="q")return s.qi+1;
-  if(s.stage==="wm")return QUESTIONS.length+s.wi+1;
-  return 0;
 }
 
 /* ───────── 自评 ───────── */
 function renderSelf(){
   stageEl.innerHTML=`
   <div class="card">
-    <div class="stagehead">
-      <div class="s-kick">STEP 0 · 自我评估</div>
-      <div class="s-title">先猜一猜自己</div>
-      <p class="s-body">凭直觉估计：你认为自己的<b>思维严谨程度</b>超过人群中百分之多少的人？这不是谦虚或自信的比赛——结尾会与你的实测结果对照，算出你的「自我认知准确度」。研究显示：自评与实测的偏差本身，就是认知水平的敏感指标。</p>
-    </div>
+    <div class="s-kick">STEP 0 · 自我评估</div>
+    <div class="s-title">先猜一猜自己</div>
+    <p class="s-body">凭直觉估计：你认为自己的<b>思维严谨程度</b>超过人群中百分之多少的人？这不是谦虚或自信的比赛——结尾会与实测对照，算出你的「自我认知准确度」。研究显示：自评与实测的偏差本身，就是认知水平的敏感指标（达克效应）。</p>
     <div class="bigpct"><span id="pctv">72</span><small>%</small></div>
     <input type="range" min="1" max="99" value="72" id="selfSlider">
     <div class="marks"><span>超过 1% 的人</span><span>超过一半</span><span>超过 99%</span></div>
     <button class="btn" id="btnSelf">确认 · 进入正式测试</button>
   </div>`;
   const sl=$("#selfSlider");
-  const paint=()=>{const v=(sl.value-sl.min)/(sl.max-sl.min)*100;sl.style.setProperty("--fill",v+"%");$("#pctv").textContent=sl.value;};
+  const paint=()=>{sl.style.setProperty("--fill",((sl.value-1)/98*100)+"%");$("#pctv").textContent=sl.value;};
   sl.addEventListener("input",paint);paint();
   $("#btnSelf").onclick=()=>{S.selfRating=+sl.value;S.secIdx=0;S.stage="secintro";save();render();};
 }
 
 /* ───────── 节过渡 ───────── */
 function renderSecIntro(){
-  const si=S.secIdx!=null?S.secIdx:(S.qi>=QUESTIONS.length?5:QUESTIONS[S.qi].sec);
+  const si=S.secIdx!=null?S.secIdx:0;
   const s=SECTIONS[si];
   stageEl.innerHTML=`
   <div class="card">
     <div class="sec-ico">${s.icon}</div>
-    <div class="sec-part">第 ${si+1} 部分 · 共 6 部分</div>
+    <div class="sec-part">第 ${si+1} 部分 · 共 ${SECTIONS.length} 部分</div>
     <div class="sec-name">${s.name}</div>
+    <div class="sec-en">${s.en}</div>
     <p class="sec-desc">${s.desc}</p>
-    <div class="sec-meta">${s.meta} · 它测的是：${s.one}</div>
-    <button class="btn" id="btnSec">${si===5?"开始工作记忆":"开始本部分"}</button>
+    <div class="sec-meta">${s.meta}<br>本维测的是：${s.one}。</div>
+    <button class="btn" id="btnSec">${si===SECTIONS.length-1?"开始工作记忆":"开始本部分"}</button>
   </div>`;
-  $("#btnSec").onclick=()=>go(si===5?"wm":"q");
+  $("#btnSec").onclick=()=>go(si===SECTIONS.length-1?"wm":"q");
 }
 
 /* ───────── 题目 ───────── */
 const AB=["A","B","C","D"];
 let qT0=0,qSel=null,qConf=null;
-function crankSVG(angle,size){
-  return `<svg viewBox="0 0 60 60" width="${size}" height="${size}"><g transform="rotate(${angle} 30 30)">
-    <path d="M24 7 h12 v17 h17 v12 h-29 z" fill="#4656D8" opacity=".92"/>
-    <path d="M24 7 h12 v17 h17 v12" fill="none" stroke="#3843B8" stroke-width="2"/>
-    <circle cx="30" cy="30" r="2.6" fill="#F59E0B"/></g></svg>`;
-}
+function starsHTML(n){return `<div class="stars">难度 ${"★".repeat(n)}<i>${"★".repeat(5-n)}</i></div>`;}
 function renderQ(){
   const q=QUESTIONS[S.qi];
   qT0=performance.now();qSel=null;qConf=null;
   const sec=SECTIONS[q.sec];
-  const opts=q.fig
-    ?`<div class="figopts">${q.figAngles.map((ang,i)=>`<button class="opt" id="opt${i}"><span>${crankSVG(ang,66)}</span></button>`).join("")}</div>`
-    :`<div class="opts">${q.opts.map((o,i)=>`<button class="opt" id="opt${i}"><span class="abc">${AB[i]}</span><span>${o}</span><span class="tick" style="display:none">✓</span></button>`).join("")}</div>`;
+  let body="",opts="";
+  if(q.figM){
+    let grid="";
+    for(let r=0;r<3;r++)for(let c=0;c<3;c++)grid+=(r===2&&c===2)?`<div class="cell qm">?</div>`:`<div class="cell">${q.mcell(r,c)}</div>`;
+    body=`<div class="stars">难度 ${"★".repeat(q.stars)}<i>${"★".repeat(5-q.stars)}</i></div><div class="q-text" style="margin-bottom:8px">${q.figTitle}</div><div class="figgrid">${grid}</div>`;
+    opts=`<div class="figopts">${[0,1,2,3].map(i=>`<button class="opt" id="opt${i}"><span class="abc">${AB[i]}</span><span class="ctr">${q.optDraw(i)}</span></button>`).join("")}</div>`;
+  }else if(q.fig3d!=null){
+    const iq=ISO_QS[q.fig3d];
+    body=`<div class="stars">难度 ${"★".repeat(q.stars)}<i>${"★".repeat(5-q.stars)}</i></div><div class="q-text" style="margin-bottom:6px">${q.text}</div>
+    <div class="iso3d">${isoSVG(iq.t,150)}</div>`;
+    opts=`<div class="figopts">${iq.opts.map((c,i)=>`<button class="opt" id="opt${i}"><span class="abc">${AB[i]}</span><span class="ctr">${isoSVG(c,92)}</span></button>`).join("")}</div>`;
+  }else{
+    body=`<div class="stars">难度 ${"★".repeat(q.stars)}<i>${"★".repeat(5-q.stars)}</i></div><div class="q-text">${q.text}</div>`;
+    opts=`<div class="opts">${q.opts.map((o,i)=>`<button class="opt" id="opt${i}"><span class="abc">${AB[i]}</span><span>${o}</span><span class="tick" style="display:none">✓</span></button>`).join("")}</div>`;
+  }
   stageEl.innerHTML=`
   <div class="card">
     <div class="q-top"><span class="q-no">Q${S.qi+1} <span style="color:var(--ink3);font-weight:500">/ ${QUESTIONS.length}</span></span><span class="q-tag">${sec.icon} ${sec.name}</span></div>
-    <div class="q-text">${q.text}</div>
-    ${q.fig?`<div class="figgrid">${(()=>{let h="";for(let r=0;r<3;r++)for(let c=0;c<3;c++)h+=(r===2&&c===2)?`<div class="cell qm">?</div>`:`<div class="cell">${crankSVG((r+c)*45,56)}</div>`;return h;})()}</div>`:""}
-    <div>${opts}</div>
+    ${body}${opts}
     <div class="conf-zone">
       <div class="conf-label">${q.att?`<b>读题检查</b> · 本题不计分`:`答完选一下把握程度（参与<b>元认知评估</b>，请如实）`}</div>
       ${q.att?"":`<div class="confs">${CONF_NAMES.map((c,i)=>`<button class="conf" id="cf${i}"><div class="c1">${c[0]}</div><div class="c2">${c[1]}</div></button>`).join("")}</div>`}
@@ -532,9 +713,8 @@ function renderQ(){
       <div class="next-hint" id="nextHint">先选择一个答案</div>
     </div>
   </div>`;
-  for(let i=0;i<(q.fig?q.figAngles.length:q.opts.length);i++){
-    document.getElementById("opt"+i).onclick=()=>pickOpt(i);
-  }
+  const nOpt=q.opts?q.opts.length:4;
+  for(let i=0;i<nOpt;i++)document.getElementById("opt"+i).onclick=()=>pickOpt(i);
   if(!q.att)for(let i=0;i<3;i++)document.getElementById("cf"+i).onclick=()=>pickConf(i);
 }
 function refreshNext(){
@@ -545,9 +725,8 @@ function refreshNext(){
 }
 function pickOpt(i){
   qSel=i;
-  const q=QUESTIONS[S.qi];
-  const n=q.fig?q.figAngles.length:q.opts.length;
-  for(let j=0;j<n;j++){
+  const nOpt=QUESTIONS[S.qi].opts?QUESTIONS[S.qi].opts.length:4;
+  for(let j=0;j<nOpt;j++){
     const el=document.getElementById("opt"+j);
     el.classList.toggle("sel",j===i);
     const t=el.querySelector(".tick");if(t)t.style.display=j===i?"":"none";
@@ -559,14 +738,11 @@ function pickConf(i){
   for(let j=0;j<3;j++)document.getElementById("cf"+j).classList.toggle("sel",j===i);
   refreshNext();
 }
-$("#stage").addEventListener("click",e=>{
-  if(e.target&&e.target.id==="nextBtn"&&!e.target.disabled)nextQ();
-});
 function nextQ(){
   const q=QUESTIONS[S.qi];
   if(qSel==null||(q.att?false:qConf==null))return;
   S.answers[S.qi]={choice:qSel,conf:qConf==null?1:qConf,timeMs:Math.round(performance.now()-qT0)};
-  if(S.qi>=QUESTIONS.length-1){S.secIdx=5;S.stage="secintro";}
+  if(S.qi>=QUESTIONS.length-1){S.secIdx=SECTIONS.length-1;S.stage="secintro";}
   else{
     S.qi++;
     if(QUESTIONS[S.qi].sec!==QUESTIONS[S.qi-1].sec){S.secIdx=QUESTIONS[S.qi].sec;S.stage="secintro";}
@@ -575,61 +751,146 @@ function nextQ(){
   save();render();
 }
 
-/* ───────── 工作记忆 ───────── */
-let wmTO=null;
-function genSeq(n){const p=[0,1,2,3,4,5,6,7,8,9];let o="";for(let i=0;i<n;i++)o+=p.splice(Math.floor(Math.random()*p.length),1)[0];return o;}
+/* ───────── 工作记忆：n-back + 倒叙 ───────── */
+let wmTO=null,nbTimers=[];
 function renderWM(){
-  if(!S.wm[S.wi]){S.wm[S.wi]={seq:genSeq(WM_LEVELS[S.wi]),input:null,ok:false};save();}
-  const t=S.wm[S.wi];
+  if(S.wi===0){renderNBackIntro();return;}
+  const wi=S.wi-1; /* 倒叙索引 */
+  if(!S.wm[wi]){S.wm[wi]={seq:genSeq(WM_LEVELS[wi]),input:null,ok:false};save();}
+  renderSpan(S.wm[wi],wi);
+}
+function genSeq(n){const p=[0,1,2,3,4,5,6,7,8,9];let o="";for(let i=0;i<n;i++)o+=p.splice(Math.floor(Math.random()*p.length),1)[0];return o;}
+/* —— n-back —— */
+function renderNBackIntro(){
   stageEl.innerHTML=`
   <div class="card">
-    <div class="q-top"><span class="q-no">WM${S.wi+1} <span style="color:var(--ink3);font-weight:500">/ ${WM_LEVELS.length}</span></span><span class="q-tag">▣ 数字倒叙</span></div>
+    <div class="q-top"><span class="q-no">WM1 / ${WM_STEPS}</span><span class="q-tag">▣ 2-back 任务</span></div>
+    <div class="s-title" style="font-size:22px">数字会一个一个出现</div>
+    <div class="nb-stage">
+      <div class="nb-tip">当<b>当前数字 = 前面第 2 个数字</b>时，立刻按下面这个按钮；<br>不同就什么都不用按。例如出现 <b style="color:var(--brand)">7 3 7</b>——第三个 7 与前面第 2 个（第一个 7）相同，要按；<br>出现 <b style="color:var(--brand)">7 3 3</b> 则不按（3 只与前一<span style="color:var(--bad)">个</span>相同，差一步）。<br><br>共 ${NB_LEN} 个数字、约 40 秒，全程节奏固定，中途不暂停。<br><b>示例</b>：7 3 <b>7</b> 2 5 3 8 2 <b>5</b> 1 …（要按的：第 3、9 个）</div>
+      <div class="nb-digits nb-fix">＋</div>
+      <div id="nbBody"><div class="nb-tip" style="color:var(--ink3)">准备好后开始，先有 3 秒倒数</div>
+      <button class="btn" id="nbStart" style="margin-top:18px">开始 2-back</button></div>
+    </div>
+  </div>`;
+  $("#nbStart").onclick=nbRun;
+}
+function nbRun(){
+  if(!S.nb){const g=genNBack();S.nb={seq:g.seq,tpos:g.tpos,results:[],fa:0,done:false};save();}
+  const nb=S.nb;
+  window.__nb={idx:-1,on:false};
+  stageEl.innerHTML=`
+  <div class="card">
+    <div class="q-top"><span class="q-no">WM1 · 2-back</span><span class="q-tag">▣ 进行中</span></div>
+    <div class="nb-stage">
+      <div class="nb-prog" id="nbProg">${Array.from({length:NB_LEN},()=> "<i></i>").join("")}</div>
+      <div class="nb-digits" id="nbStim">3</div>
+      <button class="nb-btn" id="nbBtn" disabled>↩ 与前 2 个相同</button>
+    </div>
+  </div>`;
+  const stim=$("#nbStim"),btn=$("#nbBtn"),prog=$("#nbProg");
+  let idx=-1;
+  const times=[3000];for(let i=0;i<NB_LEN;i++)times.push(2000);
+  nbTimers.forEach(clearTimeout);nbTimers=[];
+  /* 倒数 3-2-1 后开始 */
+  let t=0;
+  [3,2,1].forEach((n,k)=>nbTimers.push(setTimeout(()=>{stim.textContent=n;},k*1000)));
+  nbTimers.push(setTimeout(()=>{
+    let answered=false;
+    const advance=()=>{
+      idx++;
+      window.__nb.idx=idx;
+      if(idx>=NB_LEN){nbFinish();return;}
+      answered=false;btn.disabled=false;btn.classList.remove("hit");
+      stim.textContent=nb.seq[idx];
+      stim.classList.remove("nb-fix");
+      nbTimers.push(setTimeout(()=>{stim.textContent="·";stim.classList.add("nb-fix");btn.disabled=true;},900));
+    };
+    advance();
+    for(let i=1;i<NB_LEN;i++)nbTimers.push(setTimeout(advance,i*2000));
+    nbTimers.push(setTimeout(nbFinish,NB_LEN*2000+300));
+    btn.onclick=()=>{
+      if(btn.disabled)return;
+      if(answered)return;answered=true;
+      btn.classList.add("hit");
+      const isT=nb.tpos.includes(idx);
+      if(isT){nb.results.push({idx,ok:true});prog.children[idx].className="ok";}
+      else{nb.fa++;nb.results.push({idx,ok:false,fa:true});prog.children[idx].className="fa";}
+    };
+  },3000));
+}
+function nbFinish(){
+  if(window.__autoLog)window.__autoLog.push("nbFinish!results="+S.nb.results.length+"fa="+S.nb.fa);
+  nbTimers.forEach(clearTimeout);nbTimers=[];
+  const nb=S.nb;
+  const hits=nb.results.filter(r=>r.ok).length;
+  const missed=nb.tpos.filter(p=>!nb.results.some(r=>r.idx===p)).length;
+  nb.done=true;save();
+  $("#stage").innerHTML=`
+  <div class="card">
+    <div class="q-top"><span class="q-no">WM1 · 2-back 结果</span><span class="q-tag">▣ 完成</span></div>
+    <div class="nb-stage">
+      <div class="nb-tip" style="margin-top:6px">命中 <b style="color:var(--good)">${hits}/${NB_TARGETS}</b>　漏报 <b style="color:var(--amber)">${missed}</b>　误按 <b style="color:var(--bad)">${nb.fa}</b></div>
+      <div class="nb-digits" style="font-size:44px">${nbScore(nb)}<span style="font-size:16px;color:var(--ink3)"> /100</span></div>
+      <div class="nb-tip">下一项：数字倒叙广度（${WM_LEVELS[0]} 位与 ${WM_LEVELS[1]} 位）</div>
+      <button class="btn" id="nbNext">继续</button>
+    </div>
+  </div>`;
+  $("#nbNext").onclick=()=>{S.wi++;S.stage="wm";save();render();};
+}
+function nbScore(nb){const hits=nb.results.filter(r=>r.ok).length;
+  return Math.max(0,Math.min(100,Math.round(hits/NB_TARGETS*100-nb.fa*6)));}
+/* —— 倒叙 —— */
+function renderSpan(t,wi){
+  stageEl.innerHTML=`
+  <div class="card">
+    <div class="q-top"><span class="q-no">WM${S.wi+1} / ${WM_STEPS}</span><span class="q-tag">▣ 数字倒叙 ${WM_LEVELS[wi]} 位</span></div>
     <div class="wm-stage">
-      <div class="wm-lv">${WM_LEVELS.map((_,i)=>`<i class="${i<S.wi?"done":i===S.wi?"now":""}"></i>`).join("")}</div>
+      <div class="wm-lv">${WM_LEVELS.map((_,i)=>`<i class="${i<wi?"done":i===wi?"now":""}"></i>`).join("")}</div>
       <div id="wmBody"></div>
     </div>
   </div>`;
-  wmShow(t);
+  wmShow(t,wi);
 }
-function wmShow(t){
+function wmShow(t,wi){
   $("#wmBody").innerHTML=`
     <div class="wm-tip">记住这串数字（消失后需<b>倒序</b>输入）：</div>
     <div class="wm-digits">${t.seq.split("").join(" ")}</div>
     <div class="wm-timer"><i id="wmBar"></i></div>`;
-  const dur=WM_SECONDS[S.wi]*1000,bar=$("#wmBar");
+  const dur=WM_SECONDS[wi]*1000,bar=$("#wmBar");
   bar.style.transition=`transform ${dur}ms linear`;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transform="scaleX(0)";}));
-  clearTimeout(wmTO);wmTO=setTimeout(()=>wmInput(t),dur);
+  clearTimeout(wmTO);wmTO=setTimeout(()=>wmInput(t,wi),dur);
 }
-function wmInput(t){
+function wmInput(t,wi){
   $("#wmBody").innerHTML=`
     <div class="wm-tip" style="margin-top:4px">请输入刚才那串数字的<b>倒序</b>（从右到左）：</div>
     <input class="wm-input" id="wmIn" inputmode="numeric" enterkeyhint="done" autocomplete="off" maxlength="10">
     <button class="btn" id="wmBtn" style="margin-top:16px">确认</button>
     <div class="wm-fb" id="wmFb"></div>`;
   const inp=$("#wmIn");
-  inp.addEventListener("keydown",e=>{if(e.key==="Enter")wmCheck();});
-  $("#wmBtn").onclick=wmCheck;
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter")wmCheck(t,wi);});
+  $("#wmBtn").onclick=()=>wmCheck(t,wi);
   inp.focus();
 }
-function wmCheck(){
+function wmCheck(t,wi){
   const inp=$("#wmIn");if(!inp||inp.disabled)return;
   const v=inp.value.replace(/\D/g,"");
   if(!v){$("#wmFb").textContent="请输入数字";$("#wmFb").className="wm-fb no";return;}
-  const t=S.wm[S.wi];
   t.input=v;t.ok=(v===t.seq.split("").reverse().join(""));save();
   $("#wmFb").innerHTML=t.ok?"✓ 完全正确":`✗ 正确倒序：${t.seq.split("").reverse().join(" ")}　你的输入：${v.split("").join(" ")}`;
   $("#wmFb").className="wm-fb "+(t.ok?"ok":"no");
   inp.disabled=true;$("#wmBtn").disabled=true;
   clearTimeout(wmTO);
   wmTO=setTimeout(()=>{
-    if(S.wi>=WM_LEVELS.length-1){S.stage="result";}else{S.wi++;S.stage="wm";}
+    if(wi>=WM_LEVELS.length-1){S.stage="result";}
+    else{S.wi++;S.stage="wm";}
     save();render();
   },1500);
 }
 
 /* ───────── 计分 ───────── */
-const DIM_W={reflect:.20,logic:.18,prob:.20,bias:.15,pattern:.12,wm:.15};
+const DIM_W={gf:.16,gv:.14,gq:.14,gc:.10,logic:.14,rat:.18,wm:.14};
 function computeScores(st){
   const got={},max={};
   SECTIONS.forEach(s=>{got[s.key]=0;max[s.key]=0;});
@@ -640,13 +901,18 @@ function computeScores(st){
     const a=st.answers[i];
     if(a&&a.choice===q.a){got[SECTIONS[q.sec].key]+=q.w;correct++;}
   });
-  let wg=0,wm2=0;st.wm.forEach(t=>{wm2+=1.2;if(t.ok)wg+=1.2;});
+  /* 工作记忆：n-back 60% + 倒叙 40% */
+  let nbS=0;
+  if(st.nb)nbS=nbScore(st.nb);
+  let wg=0,wm2=0;st.wm.forEach(t=>{wm2+=1;if(t.ok)wg+=1;});
+  const spanS=wm2>0?Math.round(wg/wm2*100):0;
+  const wmVal=Math.round(nbS*0.6+spanS*0.4);
   const dims={};
   SECTIONS.forEach(s=>dims[s.key]=max[s.key]>0?Math.round(got[s.key]/max[s.key]*100):0);
-  dims.wm=wm2>0?Math.round(wg/wm2*100):0;
+  dims.wm=wmVal;
   let idx=0;for(const k in DIM_W)idx+=DIM_W[k]*dims[k];
   idx=Math.round(idx);
-  const pct=Math.min(99.4,Math.round(100/(1+Math.exp(-(idx-47)/10.5))*10)/10);
+  const pct=Math.min(99.4,Math.round(100/(1+Math.exp(-(idx-46)/10))*10)/10);
   let bs=0,bn=0,hiT=0,hiW=0;
   QUESTIONS.forEach((q,i)=>{
     const a=st.answers[i];if(!a||q.att)return;
@@ -662,55 +928,65 @@ function computeScores(st){
   const fastN=times.filter(t=>t<3500).length;
   const ai=QUESTIONS.findIndex(q=>q.att);
   const attOk=ai>=0&&st.answers[ai]?st.answers[ai].choice===QUESTIONS[ai].a:null;
-  return{dims,idx,pct,correct,scorable,brier,calib,overconf,hiT,hiW,medTime,fastN,attOk,selfPct:st.selfRating};
+  return{dims,idx,pct,correct,scorable,brier,calib,overconf,hiT,hiW,medTime,fastN,attOk,selfPct:st.selfRating,nbS,spanS};
 }
 function levelOf(x){
   if(x>=78)return["L5 · 元认知驱动型","你不仅思考，还持续监控思考本身；直觉是你的员工，不是你的老板。"];
-  if(x>=62)return["L4 · 系统分析型","概率与逻辑已内化成习惯动作，多数问题现场能主动调用它们。"];
+  if(x>=62)return["L4 · 系统分析型","抽象规则与概率思维已内化成习惯动作，多数问题现场能主动调用。"];
   if(x>=48)return["L3 · 审慎思考型","你能按住直觉、放慢验证，大多数陷阱拦不住你，偶有失守。"];
-  if(x>=33)return["L2 · 经验推理型","常识推理可靠，但在「听起来立刻就对」的陷阱前防线较薄。"];
-  return["L1 · 直觉驱动型","决策主要依赖第一反应。好消息：反思能力完全可训练，下方解析就是起点。"];
+  if(x>=33)return["L2 · 经验推理型","常识推理可靠，但在多重规则叠加处防线较薄。"];
+  return["L1 · 直觉驱动型","当前主要依赖第一反应作答。顶级测验的难度本就设给高分组——下方逐题解析就是训练起点。"];
 }
 
-/* ───────── 雷达图 ───────── */
+/* ───────── 雷达（7 轴）── */
 function radarSVG(dims){
   const labels=[...SECTIONS.map(s=>s.name),"工作记忆"];
   const vals=[...SECTIONS.map(s=>dims[s.key]),dims.wm];
-  const cx=175,cy=160,R=116,N=6;
+  const cx=175,cy=162,R=114,N=7;
   const pt=(i,r)=>{const a=(-90+i*360/N)*Math.PI/180;return[cx+r*Math.cos(a),cy+r*Math.sin(a)];};
   let g="";
-  for(const f of[.2,.4,.6,.8,1])g+=`<polygon points="${vals.map((_,i)=>pt(i,R*f).map(x=>x.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="#E5E8F1" stroke-width="1"/>`;
+  for(const f of[.25,.5,.75,1])g+=`<polygon points="${vals.map((_,i)=>pt(i,R*f).map(x=>x.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="#E5E8F1" stroke-width="1"/>`;
   let ax="",lb="";
   labels.forEach((l,i)=>{
     const[x,y]=pt(i,R);ax+=`<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#E5E8F1"/>`;
-    const[lx,ly]=pt(i,R+28);
-    lb+=`<text x="${lx.toFixed(1)}" y="${(ly+5).toFixed(1)}" text-anchor="middle" font-size="14.5" font-weight="700" fill="#181F30">${l}</text>`;
-    const vx=vals[i];if(vx!=null)lb+=`<text x="${((lx-cx)*.8+cx).toFixed(1)}" y="${((ly-cy)*.8+cy-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#B07A0A">${vx}</text>`;
+    const[lx,ly]=pt(i,R+30);
+    lb+=`<text x="${lx.toFixed(1)}" y="${(ly+5).toFixed(1)}" text-anchor="middle" font-size="14" font-weight="700" fill="#181F30">${l}</text>`;
+    lb+=`<text x="${((lx-cx)*.78+cx).toFixed(1)}" y="${((ly-cy)*.78+cy-8).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#B07A0A">${vals[i]}</text>`;
   });
   const live=vals.map(v=>Math.max(v,2));
   const poly=live.map((v,i)=>pt(i,R*v/100).map(x=>x.toFixed(1)).join(",")).join(" ");
-  return `<svg viewBox="0 0 350 335" style="width:min(100%,352px);display:block">
+  return `<svg viewBox="0 0 350 345" style="width:min(100%,352px);display:block">
     ${g}${ax}
     <polygon points="${poly}" fill="rgba(70,86,216,.15)" stroke="#4656D8" stroke-width="2.2" stroke-linejoin="round"/>
     ${live.map((v,i)=>{const[x,y]=pt(i,R*v/100);return`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5" fill="#4656D8"/>`;}).join("")}
     ${lb}</svg>`;
 }
 const DIM_NOTES={
-  reflect:"按住第一反应、动笔验证的习惯（CRT 范式）",
-  logic:"按规则严格推导，不被画面感带走",
-  prob:"基础率、样本量与独立性（卡尼曼-特沃斯基范式）",
-  bias:"在真实情境中认出幸存者偏差、沉没成本等陷阱",
-  pattern:"序列与图形中的抽象规则（流体智力）",
-  wm:"脑中草稿纸容量：数字倒叙广度"
+  gf:"多规则矩阵推理（瑞文 APM 同型）",
+  gv:"三维心理旋转（Shepard-Metzler 构型）",
+  gq:"数字系列与嵌套规律（ICAR 同型）",
+  gc:"语义关系与论证结构（GRE/MAT 同型）",
+  logic:"条件推理与三段论（含 Wason 原始形态）",
+  rat:"贝叶斯 / 期望值 / 认知反思（CRT 与卡尼曼范式）",
+  wm:"2-back 监控 + 数字倒叙广度"
 };
 const DIM_ADVICE={
-  reflect:"给数字类判断强制加一道「10 秒 + 动笔」流程：凡是脱口而出的答案，都写下来验算一遍再采纳。",
-  logic:"练习把论证拆成「前提 → 结论」两栏，逐行检查每一步是否必然成立，暂时把常识放门外。",
-  prob:"遇到概率判断先换算成自然频数——「每 10000 人里有几人」，再问一句：样本多大？基础率多少？",
-  bias:"决策前固定问两个问题：「我没看到的数据里藏着什么？」「换个说法我还同意吗？」",
-  pattern:"规律常藏在差值、差值的差值与旋转里；矩阵推理、数独对这项能力有直接训练效果。",
-  wm:"减少多任务切换，把复杂信息外化到纸面；工作记忆像肌肉，睡眠与专注练习都能改善它。"
+  gf:"练法很直接：规律先分行再分列找，先数量后位置后叠加；瑞文 APM 练习册对这类「规则组合」敏感度提升最快。",
+  gv:"练习链式追踪法：沿方块链记录拐弯序列再比对；日常里玩 3D 拼装、看工程图，都是在给心理旋转上强度。",
+  gq:"固定套路：一阶差 → 二阶差 → 拆奇偶位 → 看通项（平方/质数/斐波那契）→ 想数字的「读法」。",
+  gc:"类比题先用自己的话说清原对关系，再逐项套用；读到一个论证时练习标出它的「形式」，而不只是结论。",
+  logic:"把论证改写成符号（A→B），练熟逆否与假言连锁；警惕「结论可信」冒充「推理有效」。",
+  rat:"把概率题一律换算成「每 10000 人几人」；做选择前先算期望值，再决定要不要为确定性付溢价。",
+  wm:"2-back 可以当日常小游戏练；减少多任务切换、把复杂信息外化到纸面，等于给草稿纸减负。"
 };
+const BENCH=[
+ ["ICAR 国际认知能力资源","公开的学术认知测验库：矩阵推理、3D 旋转、数字/字母系列、言语推理——本测试前四个维度的题型直接对标其四大核心测量"],
+ ["瑞文高级推理测验 APM","流体推理金标准：本测试矩阵题的数量/位置/拉丁方/累加/算术/异或叠加规则全部取自其经典结构"],
+ ["Shepard-Metzler / Vandenberg-Kuse","心理旋转黄金范式：本测试 3D 旋转题的方块构型、镜像干扰设计与其量表同源"],
+ ["n-back（Cambridge Brain Sciences）","国际线上认知平台的标准工作记忆任务：本测试 2-back 采用相同的「匹配/非匹配+误报计分」结构"],
+ ["CRT / 卡尼曼-特沃斯基 / CART","认知反思测验与理性研究五十年成果：本测试概率与理性部分全部采用已发表的实验题目及其变式"],
+ ["CHC 认知能力模型","WAIS 等临床量表的底层维度框架：本测试七维结构按其 Gf / Gv / Gq / Gc + 推理 / 理性 / 工作记忆组织"]
+];
 
 /* ───────── 结果页 ───────── */
 function renderResult(){
@@ -720,7 +996,6 @@ function renderResult(){
   const srt=[...dimArr].sort((a,b)=>b.v-a.v);
   const best=srt[0],worst=srt[srt.length-1];
   const rd={};dimArr.forEach(d=>rd[d.key]=d.v);
-
   let dkt="",dktMsg="";
   if(R.selfPct!=null){
     const diff=R.selfPct-R.pct;
@@ -729,39 +1004,42 @@ function renderResult(){
       <div class="track"><div class="pin self" style="left:${sp}%">自</div><div class="pin real" id="pinReal" style="left:2%">实</div></div>
       <div class="pole">实测<br>${R.pct}%</div></div>
       <div class="legend"><span><i style="background:var(--ink3)"></i>开始前的自评</span><span><i style="background:var(--brand)"></i>实测百分位（估算）</span></div>`;
-    if(diff>25)dktMsg=`<div class="msg warn"><b>自评明显高于实测（+${Math.round(diff)} 个百分点）。</b>这正是达克效应的经典模式：在严谨推理任务上，训练不足的人往往意识不到自己漏掉了什么——因为「发现漏洞」所需要的能力，正是「意识到有漏洞」所需要的能力。这不是批评，这一现象人人都有，只是幅度不同。</div>`;
-    else if(diff<-20)dktMsg=`<div class="msg info"><b>自评低于实测（${Math.round(diff)} 个百分点）。</b>你倾向低估自己——这在推理能力强的人群中反而常见：他们清楚知识的边界，却把「知道还有多少不知道」误算成了自己的短板。</div>`;
-    else dktMsg=`<div class="msg good"><b>自评与实测只差 ${Math.abs(Math.round(diff))} 个百分点——自我认知相当准确。</b>准确的自我评估是元认知健康的核心标志：你了解自己的水平，也不被它绑架。</div>`;
+    if(diff>25)dktMsg=`<div class="msg warn"><b>自评明显高于实测（+${Math.round(diff)} 个百分点）。</b>这正是达克效应的经典模式——在严谨推理任务上，训练不足的人往往意识不到自己漏掉了什么。这不是批评：该现象人人都有，只是幅度不同。另外请记住：本题库难度按国际测验标准设置，<b>分数偏低≠认知不行</b>，而说明测验在正常工作。</div>`;
+    else if(diff<-20)dktMsg=`<div class="msg info"><b>自评低于实测（${Math.round(diff)} 个百分点）。</b>你倾向低估自己——这在能力强的人群中反而常见：他们清楚知识边界，却把「知道还有多少不知道」误算成短板。</div>`;
+    else dktMsg=`<div class="msg good"><b>自评与实测只差 ${Math.abs(Math.round(diff))} 个百分点——自我认知相当准确。</b>准确的自我评估是元认知健康的核心标志。</div>`;
   }
   let confMsg="";
-  if(R.overconf>=.4&&R.hiT>=3)confMsg=`<div class="msg warn">你在 ${R.hiT} 道「非常确定」的题里错了 ${R.hiW} 道——高置信错误率 <b>${Math.round(R.overconf*100)}%</b>。直觉没有你以为的那么可靠，校准方向：把一部分「非常确定」降级，并给重要决策加装验证步骤。</div>`;
-  else if(R.calib!=null&&R.calib>=60)confMsg=`<div class="msg good">置信度与正确率匹配良好（校准指数 ${R.calib}）：你不仅答得对，还知道自己什么时候对——这是高水平决策者的标志性特征。</div>`;
-  else confMsg=`<div class="msg info">校准指数 ${R.calib==null?"—":R.calib}：把握程度与实际正确率之间还有调整空间。校准目标：95% 置信时每 20 题最多错 1 题。</div>`;
+  if(R.overconf>=.4&&R.hiT>=3)confMsg=`<div class="msg warn">你在 ${R.hiT} 道「非常确定」的题里错了 ${R.hiW} 道——高置信错误率 <b>${Math.round(R.overconf*100)}%</b>。在这套高难度题库上尤其值得留意：直觉的可靠性没有你以为的那么高。</div>`;
+  else if(R.calib!=null&&R.calib>=60)confMsg=`<div class="msg good">置信度与正确率匹配良好（校准指数 ${R.calib}）：你不仅答得对，还知道自己什么时候对——高水平决策者的标志性特征。</div>`;
+  else confMsg=`<div class="msg info">校准指数 ${R.calib==null?"—":R.calib}：把握程度与正确率之间还有调整空间。目标：95% 置信时每 20 题最多错 1 题。</div>`;
   let speedMsg="";
   if(R.medTime!=null){
     const sec=(R.medTime/1000).toFixed(1);
     speedMsg=R.fastN>=R.scorable*.4
-      ?`<div class="msg warn">中位作答 ${sec} 秒，且 ${R.fastN}/${R.scorable} 题不足 3.5 秒——作答偏快。对直觉陷阱类题目，速度是最强的敌人；放慢本身就能显著提高正确率。</div>`
+      ?`<div class="msg warn">中位作答 ${sec} 秒，${R.fastN}/${R.scorable} 题不足 3.5 秒——作答偏快。这套题库的题目恰恰惩罚快答：放慢本身就能显著提高正确率。</div>`
       :`<div class="msg info">中位作答时间 ${sec} 秒（加工速度参考）。</div>`;
   }
   const attMsg=R.attOk===false
-    ?`<div class="msg warn">读题检查<b>未通过</b>——本次可能存在扫一眼就选的情况，结果或低估了你的真实水平，建议安静时重测一次。</div>`
+    ?`<div class="msg warn">读题检查<b>未通过</b>——可能存在扫一眼就选的情况，结果或低估真实水平，建议安静时重测。</div>`
     :`<div class="msg good">读题检查通过，作答认真度良好。</div>`;
-
   const review=QUESTIONS.map((q,i)=>{
     const a=S.answers[i];
     const ok=a&&a.choice===q.a;
-    const brief=(q.fig?"图形旋转矩阵（九宫格）":q.text.replace(/<[^>]+>/g," ").replace(/\s+/g," ").slice(0,32))+"…";
-    const ytxt=a?(q.fig?q.figAngles[a.choice]+"° 图形":q.opts[a.choice]):"未作答";
-    const rtxt=q.fig?q.figAngles[q.a]+"° 图形":q.opts[q.a];
+    let figrev="";
+    if(q.figM)figrev=`<div class="figrev">${[0,1,2,3].map(j=>`<div style="border:2px solid ${j===q.a?"var(--good)":"var(--line)"};border-radius:12px;padding:2px">${q.optDraw(j)}</div>`).join("")}</div>`;
+    if(q.fig3d!=null){const iq=ISO_QS[q.fig3d];figrev=`<div class="figrev"><div style="border:2px solid var(--line);border-radius:12px;padding:2px">${isoSVG(iq.t,70)}</div>${iq.opts.map((c,j)=>`<div style="border:2px solid ${j===q.a?"var(--good)":"var(--line)"};border-radius:12px;padding:2px">${isoSVG(c,58)}</div>`).join("")}</div>`;}
+    const brief=q.figM||q.fig3d!=null?(q.brief||"图形题"):q.text.replace(/<[^>]+>/g," ").replace(/\s+/g," ").slice(0,30)+"…";
+    const ytxt=a?(q.opts?q.opts[a.choice]:["A","B","C","D"][a.choice]):"未作答";
+    const rtxt=q.opts?q.opts[q.a]:["A","B","C","D"][q.a];
     return `<details class="qa ${ok?"ok":"no"}">
       <summary><span class="mk">${ok?"✓":"✗"}</span><span class="t">${i+1}. ${brief}</span><span class="arr">›</span></summary>
-      <div class="body"><div>${q.text}</div>
+      <div class="body"><div class="stars" style="margin:8px 0 2px">${q.stars?"难度 "+"★".repeat(q.stars)+"<i>"+"★".repeat(5-q.stars)+"</i>":""}</div>
+        ${q.opts?q.text:""}${q.figM?`<div>${q.figTitle}</div>`:""}${q.fig3d!=null?`<div>${q.text}</div>`:""}
+        ${figrev}
         <div class="yours ${ok?"ok":"no"}">你的答案：${ytxt}${q.att?"（读题检查，不计分）":"　·　把握："+CONF_NAMES[a?a.conf:1][0]+"　·　用时："+(a?(a.timeMs/1000).toFixed(1)+"s":"—")}</div>
         ${ok?"":`<div class="yours no">正确答案：${rtxt}</div>`}
         <div class="exp"><b>解析 · </b>${q.explain}</div></div></details>`;
   }).join("");
-
   stageEl.innerHTML=`
   <div class="card res-hero">
     <div class="r-kick">YOUR COGNITIVE PROFILE</div>
@@ -774,11 +1052,10 @@ function renderResult(){
       <div class="mini"><div class="v">${R.correct}/${R.scorable}</div><div class="k">题目正确数</div></div>
       <div class="mini"><div class="v">${R.medTime?(R.medTime/1000).toFixed(1)+"s":"—"}</div><div class="k">中位反应时</div></div>
     </div>
-    <div class="portrait"><b>你的画像：</b>最强维度「${best.name}」（${best.v} 分），最薄弱「${worst.name}」（${worst.v} 分）。${best.v-worst.v>=25?"维度落差较大——能力发展不均衡，短板明确，提升空间也明确。":"各维度较均衡，能力结构稳定。"}${best.v>=75?"你在最强维度已接近本量表顶部区间。":""}</div>
+    <div class="portrait"><b>你的画像：</b>最强维度「${best.name}」（${best.v} 分），最薄弱「${worst.name}」（${worst.v} 分）。${best.v-worst.v>=25?"维度落差较大——能力分布不均衡，短板明确，提升空间也明确。":"各维度较均衡，能力结构稳定。"}工作记忆分项：2-back ${R.nbS} / 倒叙 ${R.spanS}。</div>
   </div>
-
   <div class="card">
-    <div class="blk-title"><span class="n">01</span>六维能力图谱</div>
+    <div class="blk-title"><span class="n">01</span>七维能力图谱（CHC 框架）</div>
     <div class="radar-wrap">${radarSVG(rd)}</div>
     <div class="dimrows" style="margin-top:22px">
       ${dimArr.map(d=>`<div class="dimrow">
@@ -787,49 +1064,49 @@ function renderResult(){
         <div class="note">${DIM_NOTES[d.key]}</div></div>`).join("")}
     </div>
   </div>
-
   <div class="card">
     <div class="blk-title"><span class="n">02</span>元认知 · 自我认知的准确度</div>
     <div class="cal-row">
       <div class="cal-num">${R.calib==null?"—":R.calib}<small>校准指数</small></div>
-      <div style="font-size:13px;color:var(--ink2)">由每题「把握程度 × 对错」计算（Brier 分数 ${R.brier==null?"—":R.brier.toFixed(3)}）。指数越高，你的确信度与正确率越一致——即「知道自己什么时候知道」。</div>
+      <div style="font-size:13px;color:var(--ink2)">由每题「把握程度 × 对错」计算（Brier 分数 ${R.brier==null?"—":R.brier.toFixed(3)}）。指数越高，确信度与正确率越一致——即「知道自己什么时候知道」。</div>
     </div>
     ${confMsg}
-    <div class="blk-title" style="margin-top:30px"><span class="n">03</span>自评 vs 实测</div>
+    <div class="blk-title" style="margin-top:28px"><span class="n">03</span>自评 vs 实测</div>
     ${dkt}${dktMsg}
-    <div class="blk-title" style="margin-top:30px"><span class="n">04</span>作答质量</div>
+    <div class="blk-title" style="margin-top:28px"><span class="n">04</span>作答质量</div>
     ${attMsg}${speedMsg}
   </div>
-
   <div class="card">
     <div class="blk-title"><span class="n">05</span>逐题回顾与解析</div>
     ${review}
   </div>
-
   <div class="card">
-    <div class="blk-title"><span class="n">06</span>认知低与认知高的六个分水岭</div>
+    <div class="blk-title"><span class="n">06</span>本测试对标的世界标准</div>
+    <p class="s-body" style="margin-bottom:4px">本题库的每个部分都对齐一个有名字、有文献、被全球实验室使用过的测验范式：</p>
+    <div class="benchlist">${BENCH.map(b=>`<div class="bi"><b>${b[0]}</b><span>${b[1]}</span></div>`).join("")}</div>
+  </div>
+  <div class="card">
+    <div class="blk-title"><span class="n">07</span>认知低与认知高的六个分水岭</div>
     <p class="s-body" style="margin-bottom:4px">这不是天赋的分界，而是<b>习惯</b>的分界——每一条都可以靠刻意练习跨越。</p>
     <div class="waters">
-      <div class="water"><div class="wname">直觉的驾驭</div><div class="vs"><div class="lo"><b>认知低</b>被第一反应驾驶，答案在问题读完前就出现</div><div class="hi"><b>认知高</b>把直觉当草稿，验证之后才采纳</div></div></div>
+      <div class="water"><div class="wname">直觉的驾驭</div><div class="vs"><div class="lo"><b>认知低</b>被第一反应驾驶，答案在问题读完前出现</div><div class="hi"><b>认知高</b>把直觉当草稿，验证之后才采纳</div></div></div>
       <div class="water"><div class="wname">知识的边界</div><div class="vs"><div class="lo"><b>认知低</b>不知道自己不知道，因此格外确定</div><div class="hi"><b>认知高</b>清楚知道什么、不知道什么</div></div></div>
-      <div class="water"><div class="wname">概率的语言</div><div class="vs"><div class="lo"><b>认知低</b>被个案与故事打动：「我朋友就是这样」</div><div class="hi"><b>认知高</b>先问基础率、样本量与独立性</div></div></div>
+      <div class="water"><div class="wname">概率的语言</div><div class="vs"><div class="lo"><b>认知低</b>被个案与故事打动</div><div class="hi"><b>认知高</b>先问基础率、样本量与独立性</div></div></div>
       <div class="water"><div class="wname">观点的更新</div><div class="vs"><div class="lo"><b>认知低</b>立场先行，只收集支持自己的证据</div><div class="hi"><b>认知高</b>新证据面前愿意修改自己</div></div></div>
       <div class="water"><div class="wname">因果的审慎</div><div class="vs"><div class="lo"><b>认知低</b>相关即因果，单一原因解释复杂事</div><div class="hi"><b>认知高</b>寻找第三变量、反向因果与替代解释</div></div></div>
       <div class="water"><div class="wname">与不确定共处</div><div class="vs"><div class="lo"><b>认知低</b>必须有确定答案，非黑即白</div><div class="hi"><b>认知高</b>按概率与期望值决策</div></div></div>
     </div>
-    <div class="blk-title" style="margin-top:26px"><span class="n">07</span>给你的两条建议</div>
+    <div class="blk-title" style="margin-top:24px"><span class="n">08</span>给你的两条建议</div>
     <div class="msg info"><b>优先补强「${worst.name}」：</b>${DIM_ADVICE[worst.key]}</div>
     <div class="msg info"><b>保持「${best.name}」：</b>${DIM_ADVICE[best.key]}</div>
   </div>
-
   <div class="card">
-    <div class="blk-title"><span class="n">08</span>关于本测试</div>
-    <div class="disclaimer">本测试基于认知心理学经典范式编制：认知反思测验（Frederick, 2005）、选择任务（Wason, 1966）、卡尼曼与特沃斯基的概率判断实验（合取谬误、基础率忽视、小数定律）、瑞文式矩阵推理与数字倒叙广度。百分位由文献报告的各题通过率拟合的估算常模映射，仅供参考；本测试不是标准化智力测验，不构成任何临床、招聘用途的评估。认知能力多维且可塑，任何单一数字都定义不了你。</div>
+    <div class="blk-title"><span class="n">09</span>关于本测试</div>
+    <div class="disclaimer">本测试按 CHC 认知能力模型组织七个维度，题型对标 ICAR、瑞文 APM、Vandenberg-Kuse 心理旋转量表、n-back 与 CRT/卡尼曼-特沃斯基理性研究等国际标准测验范式；百分位由文献报告的通过率拟合估算，仅供参考。它<b>不是</b>标准化临床测验：题目为中文改编与新编同构题，未做本土常模标准化，不用于任何临床、选拔或招聘用途。认知能力多维且可塑，任何单一数字都定义不了你。</div>
     <button class="btn" id="btnCopy">复制结果摘要</button>
-    <button class="btn ghost" id="btnAgain" style="margin-top:12px">重新测试（工作记忆题会更换）</button>
+    <button class="btn ghost" id="btnAgain" style="margin-top:12px">重新测试（记忆题会更换）</button>
   </div>
   <footer>认知罗盘 Cognitive Compass · 愿你把直觉当员工，而不是当老板</footer>`;
-
   countUp($("#rBig"),R.idx,1400);
   requestAnimationFrame(()=>{
     document.querySelectorAll(".bar i").forEach(b=>b.style.width=b.dataset.w+"%");
@@ -837,7 +1114,7 @@ function renderResult(){
   });
   $("#btnCopy").onclick=()=>{
     const dims=dimArr.map(d=>`${d.name}${d.v}`).join(" / ");
-    const txt=`【认知罗盘 · 测试结果】认知指数 ${R.idx}/100（${lv}），估算超过 ${R.pct}% 的参考人群。六维：${dims}。元认知校准 ${R.calib==null?"—":R.calib}。基于认知心理学经典范式的自测，仅供自我了解。`;
+    const txt=`【认知罗盘 · 专业版结果】认知指数 ${R.idx}/100（${lv}），估算超过 ${R.pct}% 的参考人群。七维：${dims}。2-back ${R.nbS}、倒叙 ${R.spanS}，元认知校准 ${R.calib==null?"—":R.calib}。对标 ICAR/瑞文/心理旋转/n-back 的自测，仅供自我了解。`;
     (navigator.clipboard&&navigator.clipboard.writeText)?navigator.clipboard.writeText(txt).then(()=>toast("已复制到剪贴板"),()=>toast("复制失败")):toast("该浏览器不支持复制");
   };
   $("#btnAgain").onclick=()=>{S=newState();save();render();};
@@ -856,42 +1133,63 @@ function toast(m){
 function selfTest(){
   const errs=[];
   QUESTIONS.forEach((q,i)=>{
-    if(!q.fig&&(!q.opts||q.opts.length<3))errs.push(`Q${i+1}选项不足`);
-    if(!q.fig&&(q.a==null||q.a>=q.opts.length))errs.push(`Q${i+1}答案越界`);
-    if(q.fig&&(!q.figAngles||q.a>=q.figAngles.length))errs.push(`Q${i+1}图形配置错`);
+    if(q.opts&&q.opts.length<3)errs.push(`Q${i+1}选项不足`);
+    if(q.opts&&(q.a==null||q.a>=q.opts.length))errs.push(`Q${i+1}答案越界`);
     if(!q.att&&(!q.explain||q.explain.length<40))errs.push(`Q${i+1}解析过短`);
     if(!q.att&&(!q.w||q.w<=0))errs.push(`Q${i+1}权重异常`);
-    if(!q.att&&q.trap!=null&&!q.fig&&q.trap===q.a)errs.push(`Q${i+1}陷阱=答案`);
+    if(!q.att&&!q.stars)errs.push(`Q${i+1}缺难度星`);
+    if(q.figM&&(!q.mcell||!q.optDraw))errs.push(`Q${i+1}矩阵绘制缺失`);
+    try{if(q.figM){q.optDraw(0);q.optDraw(3);}}catch(e){errs.push(`Q${i+1}矩阵绘制异常:${e.message}`);}
   });
   if(QUESTIONS.filter(q=>q.att).length!==1)errs.push("读题检查题数量异常");
+  /* 3D 构型同构性断言：正确项与目标同构，干扰项全部异构 */
+  ISO_QS.forEach((q,k)=>{
+    if(!sameShape(q.t,q.opts[0]))errs.push(`3D${k+1} 正确项与目标不同构！`);
+    for(let j=1;j<q.opts.length;j++)if(sameShape(q.t,q.opts[j]))errs.push(`3D${k+1} 干扰项${j}与目标同构！`);
+  });
+  /* n-back 生成断言 */
+  for(let t=0;t<30;t++){
+    const g=genNBack();
+    if(g.seq.length!==NB_LEN||g.tpos.length!==NB_TARGETS){errs.push("nback长度错误");break;}
+    let bad=false;
+    g.tpos.forEach(p=>{if(g.seq[p]!==g.seq[p-2])bad=true;});
+    for(let i=2;i<NB_LEN;i++){if(!g.tpos.includes(i)&&g.seq[i]===g.seq[i-2])bad=true;}
+    if(bad){errs.push("nback目标/非目标冲突");break;}
+  }
+  /* 计分上下界 */
   const full=newState();
   QUESTIONS.forEach((q,i)=>full.answers[i]={choice:q.a,conf:2,timeMs:9000});
-  full.wm=[0,1,2].map(()=>({seq:"12345",input:"54321",ok:true}));full.selfRating=50;
+  full.nb={seq:[1,2,3,4],tpos:[],results:genNBack().tpos.map(()=>({ok:true})),fa:0,done:true};
+  full.wm=[{seq:"123456",input:"654321",ok:true},{seq:"1234567",input:"7654321",ok:true}];full.selfRating=50;
   const RF=computeScores(full);
   if(RF.idx!==100)errs.push("全对≠100:"+RF.idx);
   if(RF.calib<99)errs.push("满分校准应≈100:"+RF.calib);
   const zero=newState();
-  QUESTIONS.forEach((q,i)=>zero.answers[i]={choice:(q.a+1)%(q.fig?q.figAngles.length:q.opts.length),conf:2,timeMs:9000});
-  zero.wm=[0,1,2].map(()=>({seq:"12345",input:"00000",ok:false}));
+  QUESTIONS.forEach((q,i)=>zero.answers[i]={choice:(q.a+1)%(q.opts?q.opts.length:4),conf:2,timeMs:9000});
+  zero.nb={seq:[],tpos:[],results:[],fa:9,done:true};
+  zero.wm=[{seq:"123456",input:"0",ok:false},{seq:"1234567",input:"0",ok:false}];
   if(computeScores(zero).idx!==0)errs.push("全错≠0:"+computeScores(zero).idx);
-  return errs.length?("SELF-TEST FAIL:\n"+errs.join("\n")):`SELF-TEST PASS: ${QUESTIONS.length}题/权重和${QUESTIONS.reduce((a,q)=>a+(q.att?0:q.w),0).toFixed(1)}/全对=100 全错=0 校准0-99 ✓`;
+  const sum=QUESTIONS.reduce((a,q)=>a+(q.att?0:q.w),0);
+  return errs.length?("SELF-TEST FAIL:\n"+errs.join("\n")):`SELF-TEST PASS: ${QUESTIONS.length}题(权重和${sum.toFixed(2)})/3D构型同构性✓/nback生成✓/全对=100 全错=0 校准0-99 ✓`;
 }
 
-/* ───────── 自动全流程（调试）：?__auto=1 ───────── */
+/* ───────── 自动全流程 ───────── */
 function autoRun(){
   const errs=[];window.__autoErrors=errs;window.__autoLog=[];
   window.onerror=(m,s,l)=>{errs.push(m+"@"+l);};
   const log=m=>{window.__autoLog.push(m);};
+  let lastNb=-1;
   (function step(){
     try{
-      const st=S.stage;log(st+(st==="q"?("#"+(S.qi+1)):st==="wm"?("#"+(S.wi+1)):""));
-      if(st==="intro"){$("#btnGo").click();}
-      else if(st==="self"){S.selfRating=72;$("#btnSelf").click();}
-      else if(st==="secintro"){$("#btnSec").click();}
+      const st=S.stage;log(st+(st==="q"?("#"+(S.qi+1)):st==="wm"?("#"+(S.wi+1)+(window.__nb&&S.wi===0?":"+window.__nb.idx:"")):""));
+      if(st==="intro")$("#btnGo").click();
+      else if(st==="self"){$("#selfSlider").value=70;S.selfRating=70;$("#btnSelf").click();}
+      else if(st==="secintro")$("#btnSec").click();
       else if(st==="q"){
         const q=QUESTIONS[S.qi];
+        const nOpt=q.opts?q.opts.length:4;
         const right=S.qi%4!==2;
-        const pick=right?q.a:(q.a+1)%(q.fig?q.figAngles.length:q.opts.length);
+        const pick=q.opts?(right?q.a:(q.a+1)%nOpt):(right?q.a:(q.a+1)%4);
         pickOpt(pick);
         if(!q.att)pickConf(right?2:1);
         const btn=$("#nextBtn");
@@ -899,23 +1197,43 @@ function autoRun(){
         nextQ();
       }
       else if(st==="wm"){
-        const inp=$("#wmIn");
-        if(inp&&!inp.disabled){
-          const t=S.wm[S.wi];
-          inp.value=S.wi<2?t.seq.split("").reverse().join(""):"0";
-          wmCheck();
+        if(S.wi===0){ /* n-back */
+          const startBtn=$("#nbStart");
+          if(startBtn){startBtn.click();setTimeout(step,3400);return;}
+          const nb=window.__nb;
+          const fin=$("#nbNext");
+          if(fin){fin.click();setTimeout(step,300);return;}
+          if(nb&&nb.idx!==lastNb){
+            lastNb=nb.idx;
+            const s=S.nb;
+            const isT=s.tpos.includes(nb.idx);
+            const shouldPress=isT&&nb.idx%2===0; /* 只按一半目标，制造漏报 */
+            const b=$("#nbBtn");
+            if(b&&!b.disabled){
+              if(shouldPress)b.click();
+              else if(!isT&&nb.idx%5===0)b.click(); /* 制造误报 */
+            }
+          }
+        }else{
+          const inp=$("#wmIn");
+          if(inp&&!inp.disabled){
+            const wi=S.wi-1,t=S.wm[wi];
+            inp.value=wi===0?t.seq.split("").reverse().join(""):"0";
+            wmCheck(t,wi);
+          }
         }
-        setTimeout(step,350);return;
+        setTimeout(step,160);return;
       }
       else if(st==="result"){
         const d=document.createElement("div");d.className="selftest";d.id="autoResult";
-        d.textContent="AUTO "+(errs.length?"FAIL: "+errs.join(" | "):`PASS 全流程 ${TOTAL} 步无错误 idx=${computeScores(S).idx} correct=${computeScores(S).correct}/${computeScores(S).scorable}`)+"\nTRACE "+window.__autoLog.slice(-40).join(">");
+        d.textContent="AUTO "+(errs.length?"FAIL: "+errs.join(" | "):`PASS 全流程无错误 idx=${computeScores(S).idx} correct=${computeScores(S).correct}/${computeScores(S).scorable} wm=${computeScores(S).dims.wm}`)+"\nTRACE "+window.__autoLog.slice(-50).join(">");
         document.getElementById("app").appendChild(d);return;
       }
-      setTimeout(step,120);
+      setTimeout(step,110);
     }catch(e){errs.push(String(e));
       const d=document.createElement("div");d.className="selftest";d.id="autoResult";
-      d.textContent="AUTO FAIL: "+errs.join(" | ");document.getElementById("app").appendChild(d);}
+      d.textContent="AUTO FAIL: "+errs.join(" | ")+"\nTRACE "+(window.__autoLog||[]).slice(-50).join(">");
+      document.getElementById("app").appendChild(d);}
   })();
 }
 
@@ -925,9 +1243,11 @@ if(PARAMS.get("__shot")){
   if(sh==="intro")S.stage="intro";
   else if(sh==="self")S.stage="self";
   else if(sh==="sec")S.stage="secintro";
-  else if(sh==="q"){S.stage="q";S.qi=Math.min(6,Math.max(0,S.qi));}
-  else if(sh==="qpattern"){S.stage="q";S.qi=QUESTIONS.length-1;}
-  else if(sh==="wm"){S.stage="wm";S.wi=0;S.wm=[];}
+  else if(sh==="q"){S.stage="q";S.qi=0;}
+  else if(sh==="qn"){S.stage="q";S.qi=Math.max(0,Math.min(QUESTIONS.length-1,+(PARAMS.get("qi")||0)));}
+  else if(sh==="q3d"){S.stage="q";S.qi=6;}
+  else if(sh==="wm"){S.stage="wm";S.wi=0;}
+  else if(sh==="wmspan"){S.stage="wm";S.wi=1;S.wm=[{seq:"831756",input:"657138",ok:true}];}
   else if(sh==="result")S=seedDemo();
 }
 render();
@@ -956,7 +1276,7 @@ if(PARAMS.get("__auto")==="1"){autoRun();
       d.textContent="AUTO STUCK at stage="+S.stage+(S.stage==="q"?" q"+(S.qi+1):"")+(S.stage==="wm"?" wm"+(S.wi+1):"")+"\nTRACE "+(window.__autoLog||[]).slice(-40).join(">");
       document.getElementById("app").appendChild(d);
     }
-  },25000);
+  },100000);
 }
 </script>
 </body>
